@@ -1,32 +1,39 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { getCollection, type CollectionEntry } from 'astro:content';
-import { HOME } from '@/config/site';
+import { getCollection } from 'astro:content'
+import { HOME } from '@/config/site'
+import Layout from '../layouts/Layout.astro'
+import Container from '../components/Container.astro'
+import type { Project, Speaking } from '@/types'
 
-const projects = await getCollection('projects');
-const speaking = await getCollection('speaking');
-
+const projects = await getCollection('projects')
+const speaking = await getCollection('speaking')
 ---
 
 <Layout title={HOME.TITLE} description={HOME.DESCRIPTION}>
-<h1>The current URL is: {Astro.url}</h1>
-<h1>The current URL pathname is: {Astro.url.pathname}</h1>
-<h1 class="mb-4">The current URL origin is: {Astro.url.origin}</h1>
-	<ul class="flex flex-col gap-2">
-		{projects.map((project: CollectionEntry<'projects'>) => (
-			<li class="flex flex-col">
-				<h2>{project.data.name}</h2>
-				<p>{project.data.description}</p>
-			</li>
-		))}
-	</ul>
+  <Container>
+    <h1>The current URL is: {Astro.url}</h1>
+    <h1>The current URL pathname is: {Astro.url.pathname}</h1>
+    <h1 class="mb-4">The current URL origin is: {Astro.url.origin}</h1>
+    <ul class="flex flex-col gap-2">
+      {
+        projects.map((project: Project) => (
+          <li class="flex flex-col">
+            <h2>{project.data.name}</h2>
+            <p>{project.data.description}</p>
+          </li>
+        ))
+      }
+    </ul>
 
-	<ul class="flex flex-col gap-2">
-		{speaking.map((engagement: CollectionEntry<'speaking'>) => (
-			<li class="flex flex-col">
-				<h2>{engagement.data.title}</h2>
-				<p>{engagement.data.description}</p>
-			</li>
-		))}
-	</ul>
+    <ul class="flex flex-col gap-2">
+      {
+        speaking.map((engagement: Speaking) => (
+          <li class="flex flex-col">
+            <h2>{engagement.data.title}</h2>
+            <p>{engagement.data.description}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </Container>
 </Layout>
