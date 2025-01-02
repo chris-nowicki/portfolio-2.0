@@ -8,7 +8,7 @@ const speaking = await getCollection('speaking');
 
 ---
 
-<Layout title={HOME.TITLE} description={HOME.DESCRIPTION} >
+<Layout title={HOME.TITLE} description={HOME.DESCRIPTION}>
 <h1>The current URL is: {Astro.url}</h1>
 <h1>The current URL pathname is: {Astro.url.pathname}</h1>
 <h1 class="mb-4">The current URL origin is: {Astro.url.origin}</h1>
@@ -29,5 +29,4 @@ const speaking = await getCollection('speaking');
 			</li>
 		))}
 	</ul>
-
 </Layout>
