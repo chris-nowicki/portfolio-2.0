@@ -11,7 +11,7 @@ const speaking = await getCollection('speaking');
 <Layout title={HOME.TITLE} description={HOME.DESCRIPTION} >
 <h1>The current URL is: {Astro.url}</h1>
 <h1>The current URL pathname is: {Astro.url.pathname}</h1>
-<h1>The current URL origin is: {Astro.url.origin}</h1>
+<h1 class="mb-4">The current URL origin is: {Astro.url.origin}</h1>
 	<ul class="flex flex-col gap-2">
 		{projects.map((project: CollectionEntry<'projects'>) => (
 			<li class="flex flex-col">
