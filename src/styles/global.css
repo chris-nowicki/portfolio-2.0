@@ -42,7 +42,7 @@
 
 html,
 body {
-  @apply bg-background text-foreground size-full;
+  @apply size-full scroll-smooth bg-background text-foreground;
 }
 
 body {
@@ -56,4 +56,9 @@ main {
 
 .debug-first {
   outline: 2px solid red;
+}
+
+nav {
+  @apply fixed left-0 right-0 top-0 z-50 py-5;
+  @apply saturate-200 backdrop-blur-sm;
 }
