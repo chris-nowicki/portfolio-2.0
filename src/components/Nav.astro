@@ -4,11 +4,14 @@ import Container from './Container.astro'
 
 <Container>
   <nav
-    class="text-muted-foreground py-6 flex w-full items-center justify-between text-md"
-  >
-    <a href="/" class="hover:text-foreground">{`{CN}`}</a>
+    class="flex w-full items-center justify-between py-6 text-sm text-muted-foreground px-2">
+    <a
+      href="/"
+      class="rounded-full border px-2 py-1 font-cursive text-2xl shadow transition-colors duration-300 hover:bg-foreground/10 hover:text-foreground"
+      >CN</a
+    >
 
-    <ul class="flex list-none gap-4">
+    <ul class="flex list-none gap-4 font-cursive text-3xl">
       <li>now</li>
       <li>blog</li>
       <li>speaking</li>

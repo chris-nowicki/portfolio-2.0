@@ -40,6 +40,7 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
+        cursive: ['Reenie Beanie', 'cursive'],
       },
     },
   },

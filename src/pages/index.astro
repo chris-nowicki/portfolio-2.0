@@ -5,6 +5,8 @@ import PageLayout from '../layouts/PageLayout.astro'
 import Container from '../components/Container.astro'
 import Button from '@/components/Button.astro'
 import type { Project, Speaking } from '@/types'
+import ArrowRightUp from '@/assets/icons/arrow-right-up.svg'
+import ArrowSquiggle from '@/assets/icons/arrow-8.svg'
 
 const projects = await getCollection('projects')
 const speaking = await getCollection('speaking')
@@ -12,7 +14,8 @@ const speaking = await getCollection('speaking')
 
 <PageLayout title={HOME.TITLE} description={HOME.DESCRIPTION}>
   <Container>
-    <section class="text-md mt-10">
+    <!-- hero -->
+    <section class="text-md relative mt-10 px-2">
       <header class="mb-4">
         <h1 class="text-2xl font-bold">Hello, I'm Chris Nowicki</h1>
         <p>Software Engineering Lead at This Dot Labs.</p>
@@ -26,20 +29,55 @@ const speaking = await getCollection('speaking')
           >), or hunting for the perfect cheeseburger.
         </p>
 
-        <p>
+        <p class="font-cursive text-2xl">
           Oh, and coffee. <em>Lots</em> of coffee.
         </p>
       </div>
 
       <div class="mt-8 flex flex-wrap gap-2 sm:gap-4">
-        <Button href="#contact" size="lg" class="uppercase" target='_self'>Contact Me</Button>
+        <Button href="#contact" size="lg" class="uppercase" target="_self"
+          >Contact Me</Button
+        >
         <Button
-          href="#"
+          href="https://buymeacoffee.com/chrisnowicki"
           variant="outline"
           target="_blank"
           size="lg"
           class="uppercase">Buy Me A Coffee</Button
         >
+      </div>
+
+      <ArrowSquiggle
+        size={45}
+        class="absolute right-[328px] top-[190px] rotate-90"
+      />
+    </section>
+
+    <!-- projects -->
+    <section class="mt-16 w-full">
+      <header class="mb-8 px-2">
+        <h2 class="text-xl font-bold">Projects</h2>
+      </header>
+      <div class="flex-1">
+        {
+          projects.map((project: Project) => (
+            <a
+              href={project.data.gitHubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex items-center justify-between border-b p-2 transition-colors duration-200 ease-in-out first:rounded-t-lg last:rounded-b-lg hover:bg-primary-foreground">
+              <div>
+                <h3 class="font-semibold">{project.data.name}</h3>
+                <p class="text-foreground-muted">{project.data.description}</p>
+              </div>
+
+              <ArrowRightUp
+                fill="currentColor"
+                class="mr-2 h-5 w-5 text-primary/50 transition-all duration-200 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary"
+              />
+            </a>
+          ))
+        }
       </div>
     </section>
   </Container>

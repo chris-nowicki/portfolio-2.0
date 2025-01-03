@@ -53,3 +53,7 @@ body {
 main {
   @apply flex-1;
 }
+
+.debug-first {
+  outline: 2px solid red;
+}
