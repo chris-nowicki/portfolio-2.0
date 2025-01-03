@@ -1,39 +1,46 @@
 ---
 import { getCollection } from 'astro:content'
 import { HOME } from '@/config/site'
-import Layout from '../layouts/Layout.astro'
+import PageLayout from '../layouts/PageLayout.astro'
 import Container from '../components/Container.astro'
+import Button from '@/components/Button.astro'
 import type { Project, Speaking } from '@/types'
 
 const projects = await getCollection('projects')
 const speaking = await getCollection('speaking')
 ---
 
-<Layout title={HOME.TITLE} description={HOME.DESCRIPTION}>
+<PageLayout title={HOME.TITLE} description={HOME.DESCRIPTION}>
   <Container>
-    <h1>The current URL is: {Astro.url}</h1>
-    <h1>The current URL pathname is: {Astro.url.pathname}</h1>
-    <h1 class="mb-4">The current URL origin is: {Astro.url.origin}</h1>
-    <ul class="flex flex-col gap-2">
-      {
-        projects.map((project: Project) => (
-          <li class="flex flex-col">
-            <h2>{project.data.name}</h2>
-            <p>{project.data.description}</p>
-          </li>
-        ))
-      }
-    </ul>
+    <section class="text-md mt-10">
+      <header class="mb-4">
+        <h1 class="text-2xl font-bold">Hello, I'm Chris Nowicki</h1>
+        <p>Software Engineering Lead at This Dot Labs.</p>
+      </header>
 
-    <ul class="flex flex-col gap-2">
-      {
-        speaking.map((engagement: Speaking) => (
-          <li class="flex flex-col">
-            <h2>{engagement.data.title}</h2>
-            <p>{engagement.data.description}</p>
-          </li>
-        ))
-      }
-    </ul>
+      <div class="space-y-8">
+        <p>
+          When I'm not leading engineering teams, you'll find me tinkering with
+          new tech, optimizing my productivity setup (<em
+            >while keeping it minimal</em
+          >), or hunting for the perfect cheeseburger.
+        </p>
+
+        <p>
+          Oh, and coffee. <em>Lots</em> of coffee.
+        </p>
+      </div>
+
+      <div class="mt-8 flex flex-wrap gap-2 sm:gap-4">
+        <Button href="#contact" size="lg" class="uppercase" target='_self'>Contact Me</Button>
+        <Button
+          href="#"
+          variant="outline"
+          target="_blank"
+          size="lg"
+          class="uppercase">Buy Me A Coffee</Button
+        >
+      </div>
+    </section>
   </Container>
-</Layout>
+</PageLayout>

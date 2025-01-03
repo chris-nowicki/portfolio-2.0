@@ -1,0 +1,49 @@
+---
+// components/Button.astro
+import { buttonVariants, type ButtonVariants } from '../lib/buttonVariants'
+import { cn } from '@/utils/utils'
+
+type Variant = NonNullable<ButtonVariants['variant']>
+type Size = NonNullable<ButtonVariants['size']>
+
+export interface Props {
+  class?: string
+  type?: 'button' | 'submit' | 'reset'
+  disabled?: boolean
+  href?: string
+  target?: string
+  rel?: string
+  variant?: Variant
+  size?: Size
+}
+
+const {
+  variant = 'default',
+  size = 'default',
+  class: className,
+  type = 'button',
+  disabled = false,
+  href,
+  target = 'self',
+  rel,
+  ...rest
+} = Astro.props
+
+const classes = cn(buttonVariants({ variant, size, className }))
+
+// Determine if this should be a link or button based on href prop
+const isLink = typeof href !== 'undefined'
+
+// For links, add rel="noopener noreferrer" when target="_blank"
+const linkRel = target === '_blank' ? 'noopener noreferrer' : rel
+---
+
+{
+  isLink ?
+    <a href={href} class={classes} target={target} rel={linkRel} {...rest}>
+      <slot />
+    </a>
+  : <button type={type} class={classes} disabled={disabled} {...rest}>
+      <slot />
+    </button>
+}
