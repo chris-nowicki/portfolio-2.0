@@ -1,0 +1,36 @@
+---
+import ArrowRight from '@/assets/icons/arrow-right.svg'
+import ArrowRightUp from '@/assets/icons/arrow-right-up.svg'
+
+interface Props {
+  href: string
+  name: string
+  description: string
+  external?: boolean
+}
+
+const { href, name, description, external = false }: Props = Astro.props
+---
+
+<a
+  href={href}
+  target={external ? '_blank' : '_self'}
+  rel={external ? 'noopener noreferrer' : ''}
+  class="group flex items-center justify-between border-b p-2 transition-colors duration-200 ease-in-out hover:bg-primary-foreground first:hover:rounded-t-lg last:hover:rounded-b-lg">
+  <div>
+    <h3 class="font-semibold">{name}</h3>
+    <p class="text-foreground-muted">{description}</p>
+  </div>
+
+  {
+    external ?
+      <ArrowRightUp
+        fill="currentColor"
+        class="mr-0 h-5 w-5 text-primary/50 transition-all duration-200 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary sm:mr-2"
+      />
+    : <ArrowRight
+        fill="currentColor"
+        class="mr-0 h-5 w-5 text-primary/50 transition-all duration-200 ease-in-out group-hover:translate-x-2 group-hover:text-primary sm:mr-2"
+      />
+  }
+</a>

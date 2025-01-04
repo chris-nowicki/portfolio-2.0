@@ -1,0 +1,33 @@
+---
+import Container from './Container.astro'
+import { SOCIALS } from '@/lib/site'
+---
+
+<Container>
+  <section
+    class="my-32 w-full rounded-lg bg-primary-foreground p-4"
+    id="contact">
+    <header class="mb-8 flex justify-between">
+      <h2 class="text-xl font-bold">Let's Connect</h2>
+    </header>
+
+    <p>
+      If you want to get in touch with me about something or just to say, hi 👋,
+      reach out on social media or send me an email at chris@chrisnowicki.dev.
+    </p>
+
+    <div class="mt-8 flex flex-wrap gap-2 sm:gap-6">
+      {
+        SOCIALS.map((social) => (
+          <a
+            href={social.URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline-offset-1 hover:underline">
+            {social.NAME}
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Container>
