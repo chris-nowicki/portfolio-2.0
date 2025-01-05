@@ -11,14 +11,14 @@ const links = [
 
 <nav>
   <Container>
-    <div class="flex items-center justify-between p-2 text-muted-foreground">
+    <div class="flex items-center justify-between text-muted-foreground sm:p-2">
       <a
         href="/"
-        class="rounded-full border bg-white px-2 py-1 font-cursive text-2xl transition-colors duration-300 hover:bg-primary-foreground hover:text-foreground"
+        class="rounded-full border bg-white px-2 py-1 font-cursive transition-colors duration-300 hover:bg-primary-foreground hover:text-foreground sm:text-2xl"
         >CN</a
       >
 
-      <ul class="flex list-none gap-4 font-cursive text-3xl">
+      <ul class="flex list-none gap-4 font-cursive text-2xl sm:text-3xl">
         {
           links.map((link) => (
             <li>

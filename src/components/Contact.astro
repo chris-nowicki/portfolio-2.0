@@ -1,14 +1,20 @@
 ---
 import Container from './Container.astro'
-import { SOCIALS } from '@/lib/site'
+import GitHub from '@/assets/icons/github.svg'
+import LinkedIn from '@/assets/icons/linkedin.svg'
+import X from '@/assets/icons/x.svg'
+import Twitch from '@/assets/icons/twitch.svg'
+
+const socialIconClass =
+  'hover:scale-110 transition-all duration-200 ease-in-out'
 ---
 
 <Container>
   <section
-    class="my-32 w-full rounded-lg bg-primary-foreground p-4"
+    class="my-16 w-full rounded-lg bg-primary-foreground p-4 sm:my-32 text-sm sm:text-base shadow-md"
     id="contact">
-    <header class="mb-8 flex justify-between">
-      <h2 class="text-xl font-bold">Let's Connect</h2>
+    <header class="mb-4 sm:mb-8 flex justify-between">
+      <h2 class="text-lg sm:text-xl font-bold">Let's Connect</h2>
     </header>
 
     <p>
@@ -16,18 +22,35 @@ import { SOCIALS } from '@/lib/site'
       reach out on social media or send me an email at chris@chrisnowicki.dev.
     </p>
 
-    <div class="mt-8 flex flex-wrap gap-2 sm:gap-6">
-      {
-        SOCIALS.map((social) => (
-          <a
-            href={social.URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="underline-offset-1 hover:underline">
-            {social.NAME}
-          </a>
-        ))
-      }
+    <div class="mt-8 flex flex-wrap gap-4">
+      <a
+        href="https://twitter.com/iamwix"
+        target="_blank"
+        rel="noopener noreferrer"
+        class={socialIconClass}>
+        <X size={24} />
+      </a>
+      <a
+        href="https://www.linkedin.com/in/chris-nowicki/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class={socialIconClass}>
+        <LinkedIn size={24} />
+      </a>
+      <a
+        href="https://github.com/chris-nowicki"
+        target="_blank"
+        rel="noopener noreferrer"
+        class={socialIconClass}>
+        <GitHub size={24} />
+      </a>
+      <a
+        href="https://www.twitch.tv/chriswix"
+        target="_blank"
+        rel="noopener noreferrer"
+        class={socialIconClass}>
+        <Twitch size={24} />
+      </a>
     </div>
   </section>
 </Container>

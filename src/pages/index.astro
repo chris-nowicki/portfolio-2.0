@@ -1,12 +1,11 @@
 ---
 import { getCollection } from 'astro:content'
-import { HOME, NUMBER_OF_ENTRIES, SOCIALS } from '@/lib/site'
+import { HOME, NUMBER_OF_ENTRIES } from '@/lib/site'
 import PageLayout from '../layouts/PageLayout.astro'
 import Container from '../components/Container.astro'
 import CustomLink from '@/components/CustomLink.astro'
-import LinkItem from '@/components/LinkItem.astro'
+import ContentSection from '@/components/ContentSection.astro'
 import ArrowSquiggle from '@/assets/icons/arrow-squiggle.svg'
-import type { Project, Blog, Speaking } from '@/types'
 
 const projects = (await getCollection('projects'))
   .sort((a, b) => b.data.id.valueOf() - a.data.id.valueOf())
@@ -23,10 +22,10 @@ const speaking = (await getCollection('speaking'))
 
 <PageLayout title={HOME.TITLE} description={HOME.DESCRIPTION}>
   <Container>
-    <!-- hero -->
-    <section class="text-md relative mb-28 pt-40">
+    <section
+      class="relative mb-16 px-2 pt-28 text-sm sm:mb-28 sm:pt-40 sm:text-base">
       <header class="mb-4">
-        <h1 class="text-2xl font-bold">Hello, I'm Chris Nowicki</h1>
+        <h1 class="text-xl font-bold sm:text-2xl">Hello, I'm Chris Nowicki</h1>
         <p>Software Engineering Lead at This Dot Labs.</p>
       </header>
 
@@ -38,7 +37,7 @@ const speaking = (await getCollection('speaking'))
           >), or hunting for the perfect cheeseburger.
         </p>
 
-        <blockquote class="font-cursive text-2xl">
+        <blockquote class="font-cursive text-xl sm:text-2xl">
           Oh, and coffee. Lots of coffee.
         </blockquote>
       </div>
@@ -62,64 +61,37 @@ const speaking = (await getCollection('speaking'))
       />
     </section>
 
-    <!-- projects -->
-    <section class="mb-20">
-      <header class="mb-8 px-2">
-        <h2 class="text-xl font-bold">Projects</h2>
-      </header>
-      <div class="space-y-4">
-        {
-          projects.map((project: Project) => (
-            <LinkItem
-              href={project.data.gitHubUrl}
-              name={project.data.name}
-              description={project.data.description}
-              external={true}
-            />
-          ))
-        }
-      </div>
-    </section>
+    <div>
+      <ContentSection
+        title="Projects"
+        items={projects.map((project) => ({
+          href: project.data.gitHubUrl,
+          name: project.data.name,
+          description: project.data.description,
+          external: true,
+        }))}
+      />
 
-    <!-- posts -->
-    <section class="mb-20">
-      <header class="mb-8 flex items-center justify-between px-2">
-        <h2 class="text-xl font-bold">Latest Posts</h2>
-        <a href="/blog" class="text-primary hover:underline">See all posts</a>
-      </header>
-      <div class="space-y-4">
-        {
-          posts.map((project: Blog) => (
-            <LinkItem
-              href={`/blog/${project.id}`}
-              name={project.data.title}
-              description={project.data.description}
-            />
-          ))
-        }
-      </div>
-    </section>
+      <ContentSection
+        title="Latest Posts"
+        viewAllLink={{ href: '/blog', text: 'View all posts' }}
+        items={posts.map((post) => ({
+          href: `/blog/${post.id}`,
+          name: post.data.title,
+          description: post.data.description,
+        }))}
+      />
 
-    <!-- speaking -->
-    <section>
-      <header class="mb-8 flex items-center justify-between px-2">
-        <h2 class="text-xl font-bold">Speaking</h2>
-        <a href="/speaking" class="text-primary hover:underline"
-          >See all engagements</a
-        >
-      </header>
-      <div class="space-y-4">
-        {
-          speaking.map((engagement: Speaking) => (
-            <LinkItem
-              href={engagement.data.videoUrl}
-              name={engagement.data.title}
-              description={engagement.data.description}
-              external={true}
-            />
-          ))
-        }
-      </div>
-    </section>
+      <ContentSection
+        title="Speaking"
+        items={speaking.map((engagement) => ({
+          href: engagement.data.videoUrl,
+          name: engagement.data.title,
+          description: engagement.data.description,
+          external: true,
+        }))}
+        class="mb-0 sm:mb-0"
+      />
+    </div>
   </Container>
 </PageLayout>

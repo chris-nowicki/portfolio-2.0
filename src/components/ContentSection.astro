@@ -1,0 +1,48 @@
+---
+import LinkItem from './LinkItem.astro'
+import { cn } from '@/utils/utils'
+
+interface Props {
+  title: string
+  viewAllLink?: {
+    href: string
+    text: string
+  }
+  items: {
+    href: string
+    name: string
+    description: string
+    external?: boolean
+  }[]
+  class?: string
+}
+
+const { title, viewAllLink, items, class: updatedClass = '' } = Astro.props
+---
+
+<section class={cn('mb-14 sm:mb-20', updatedClass)}>
+  <header class="mb-6 flex items-center justify-between px-2 sm:mb-8">
+    <h2 class="text-lg font-bold sm:text-xl">{title}</h2>
+    {
+      viewAllLink && (
+        <a
+          href={viewAllLink.href}
+          class="text-sm text-primary hover:underline sm:text-base">
+          {viewAllLink.text}
+        </a>
+      )
+    }
+  </header>
+  <div>
+    {
+      items.map((item) => (
+        <LinkItem
+          href={item.href}
+          name={item.name}
+          description={item.description}
+          external={item.external}
+        />
+      ))
+    }
+  </div>
+</section>

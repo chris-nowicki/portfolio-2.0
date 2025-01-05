@@ -1,4 +1,5 @@
 import type { CollectionEntry } from 'astro:content'
+import type { ImageMetadata } from 'astro'
 
 export type Site = {
   NAME: string
@@ -11,7 +12,7 @@ export type Metadata = {
 }
 
 export type Socials = {
-  NAME: string
+  ICON: ImageMetadata
   URL: string
 }
 
