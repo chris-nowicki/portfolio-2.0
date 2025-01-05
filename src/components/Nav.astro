@@ -1,5 +1,6 @@
 ---
 import Container from './Container.astro'
+import Underline from '@/assets/icons/needle-underline.svg'
 
 const links = [
   { href: '/now', text: 'now' },
@@ -24,8 +25,9 @@ const links = [
             <li>
               <a
                 href={link.href}
-                class="transition-colors duration-300 hover:text-foreground">
+                class="group relative transition-colors duration-200 ease-in-out hover:text-foreground">
                 {link.text}
+                <Underline class="absolute bottom-0 left-0 hidden transition-all duration-300 ease-in-out group-hover:block" />
               </a>
             </li>
           ))
@@ -34,3 +36,5 @@ const links = [
     </div>
   </Container>
 </nav>
+
+
