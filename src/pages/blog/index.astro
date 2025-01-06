@@ -6,10 +6,13 @@ import Container from '@/components/Container.astro'
 import LinkItem from '@/components/LinkItem.astro'
 import { groupEntriesByYear, getSortedYears } from '@/utils/utils.ts'
 
-const data = await getCollection('blog')
+const data = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+)
 
 type Posts = Record<string, CollectionEntry<'blog'>[]>
 const posts: Posts = groupEntriesByYear<'blog'>(data)
+
 const years = getSortedYears(posts)
 ---
 

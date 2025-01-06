@@ -12,6 +12,7 @@ const data = (await getCollection('speaking')).sort(
 
 type Speaking = Record<string, CollectionEntry<'speaking'>[]>
 const speaking: Speaking = groupEntriesByYear<'speaking'>(data)
+
 const years = getSortedYears(speaking)
 ---
 

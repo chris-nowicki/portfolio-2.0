@@ -22,6 +22,6 @@ export function groupEntriesByYear<T extends 'blog' | 'speaking'>(
   )
 }
 
-export function getSortedYears(posts: Record<string, any[]>) {
-  return Object.keys(posts).sort((a, b) => parseInt(b) - parseInt(a))
+export function getSortedYears(entries: Record<string, any[]>) {
+  return Object.keys(entries).sort((a, b) => parseInt(b) - parseInt(a))
 }
