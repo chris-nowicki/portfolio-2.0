@@ -6,19 +6,19 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function groupEntriesByYear<T extends 'blog'>(
+export function groupEntriesByYear<T extends 'blog' | 'speaking'>(
   entries: CollectionEntry<T>[]
-): Record<number, CollectionEntry<T>[]> {
+): Record<string, CollectionEntry<T>[]> {
   return entries.reduce(
     (acc, entry) => {
-      const year = new Date(entry.data.date).getFullYear()
+      const year = new Date(entry.data.date).getFullYear().toString()
       if (!acc[year]) {
         acc[year] = []
       }
       acc[year].push(entry)
       return acc
     },
-    {} as Record<number, CollectionEntry<T>[]>
+    {} as Record<string, CollectionEntry<T>[]>
   )
 }
 

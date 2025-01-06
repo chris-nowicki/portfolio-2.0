@@ -27,6 +27,7 @@ const speaking = defineCollection({
   loader: file('src/content/speaking/speaking.json'),
   schema: z.object({
     id: z.number(),
+    date: z.string(),
     title: z.string(),
     description: z.string(),
     videoUrl: z.string(),

@@ -1,19 +1,45 @@
 ---
-import { getCollection } from 'astro:content'
-import { SPEAKING } from '@/lib/site'
+import { getCollection, type CollectionEntry } from 'astro:content'
+import { BLOG } from '@/lib/site'
 import PageLayout from '@/layouts/PageLayout.astro'
 import Container from '@/components/Container.astro'
+import LinkItem from '@/components/LinkItem.astro'
+import { groupEntriesByYear, getSortedYears } from '@/utils/utils.ts'
 
-const speaking = await getCollection('speaking')
+const data = (await getCollection('speaking')).sort(
+  (a, b) => b.data.id.valueOf() - a.data.id.valueOf()
+)
+
+type Speaking = Record<string, CollectionEntry<'speaking'>[]>
+const speaking: Speaking = groupEntriesByYear<'speaking'>(data)
+const years = getSortedYears(speaking)
 ---
 
-<PageLayout title={SPEAKING.TITLE} description={SPEAKING.DESCRIPTION}>
+<PageLayout title={BLOG.TITLE} description={BLOG.DESCRIPTION}>
   <Container>
     <section
       class="relative mb-16 px-2 pt-28 text-sm sm:mb-28 sm:pt-40 sm:text-base">
-      <header class="mb-4">
+      <header class="mb-4 px-2">
         <h1 class="text-xl font-bold sm:text-2xl">Speaking</h1>
       </header>
+
+      <div>
+        {
+          years.map((year: string) => (
+            <div>
+              <h2 class="mb-4 mt-8 px-2 text-lg font-bold">{year}</h2>
+              {speaking[year].map((entry) => (
+                <LinkItem
+                  href={entry.data.videoUrl}
+                  name={entry.data.title}
+                  description={entry.data.description}
+                  external={true}
+                />
+              ))}
+            </div>
+          ))
+        }
+      </div>
     </section>
   </Container>
 </PageLayout>
