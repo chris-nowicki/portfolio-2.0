@@ -1,0 +1,30 @@
+---
+import { NOW } from '@/lib/site'
+import PageLayout from '@/layouts/PageLayout.astro'
+import Container from '@/components/Container.astro'
+---
+
+<PageLayout title={NOW.TITLE} description={NOW.DESCRIPTION}>
+  <Container>
+    <section
+      class="relative mb-16 px-2 pt-28 text-sm sm:mb-28 sm:pt-40 sm:text-base">
+      <header class="mb-4">
+        <h1 class="text-xl font-bold sm:text-2xl">Now</h1>
+        <p>Updated: January 6th, 2025</p>
+      </header>
+
+      <div class="space-y-8">
+        <p>
+          I'm currently leading the engineering team at This Dot Labs. I'm
+          working on a few side projects, including a new course on productivity
+          and a new blog post series on minimalism.
+        </p>
+
+        <p>
+          I'm also working on a new talk for the upcoming conference season. I'm
+          excited to share more details soon!
+        </p>
+      </div>
+    </section>
+  </Container>
+</PageLayout>

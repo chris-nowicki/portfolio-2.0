@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content'
+import { SPEAKING } from '@/lib/site'
+import PageLayout from '@/layouts/PageLayout.astro'
+import Container from '@/components/Container.astro'
+
+const speaking = await getCollection('speaking')
+---
+
+<PageLayout title={SPEAKING.TITLE} description={SPEAKING.DESCRIPTION}>
+  <Container>
+    <section
+      class="relative mb-16 px-2 pt-28 text-sm sm:mb-28 sm:pt-40 sm:text-base">
+      <header class="mb-4">
+        <h1 class="text-xl font-bold sm:text-2xl">Speaking</h1>
+      </header>
+    </section>
+  </Container>
+</PageLayout>

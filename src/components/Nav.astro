@@ -1,13 +1,16 @@
 ---
 import Container from './Container.astro'
 import Underline from '@/assets/icons/needle-underline.svg'
+import { cn } from '@/utils/utils'
 
-const links = [
+const navLinks = [
   { href: '/now', text: 'now' },
   { href: '/blog', text: 'blog' },
   { href: '/speaking', text: 'speaking' },
   { href: '/uses', text: 'uses' },
 ]
+
+const pathName = Astro.url.pathname.split('/')[1]
 ---
 
 <nav>
@@ -21,13 +24,23 @@ const links = [
 
       <ul class="flex list-none gap-4 font-cursive text-2xl sm:text-3xl">
         {
-          links.map((link) => (
+          navLinks.map((link) => (
             <li>
               <a
                 href={link.href}
-                class="group relative transition-colors duration-200 ease-in-out hover:text-foreground">
+                class={cn(
+                  'group relative transition-colors duration-200 ease-in-out hover:text-foreground',
+                  link.text === pathName ?
+                    'text-foreground'
+                  : 'text-muted-foreground'
+                )}>
                 {link.text}
-                <Underline class="absolute bottom-0 left-0 hidden transition-all duration-300 ease-in-out group-hover:block" />
+                <Underline
+                  class={cn(
+                    'absolute bottom-0 left-0 transition-all duration-300 ease-in-out group-hover:block',
+                    link.text === pathName ? 'block' : 'hidden'
+                  )}
+                />
               </a>
             </li>
           ))

@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content'
+import { BLOG } from '@/lib/site'
+import PageLayout from '@/layouts/PageLayout.astro'
+import Container from '@/components/Container.astro'
+import ContentSection from '@/components/ContentSection.astro'
+
+const posts = await getCollection('blog')
+---
+
+<PageLayout title={BLOG.TITLE} description={BLOG.DESCRIPTION}>
+  <Container>
+    <section
+      class="relative mb-16 px-2 pt-28 text-sm sm:mb-28 sm:pt-40 sm:text-base">
+      <header class="mb-4">
+        <h1 class="text-xl font-bold sm:text-2xl">Blog</h1>
+      </header>
+    </section>
+  </Container>
+  s</PageLayout
+>

@@ -1,21 +1,22 @@
 ---
-import '@/styles/global.css';
-import '@fontsource/inter/latin-400.css';
-import '@fontsource/inter/latin-600.css';
-import '@fontsource/reenie-beanie/latin-400.css';
-import inter400 from '@fontsource/inter/files/inter-latin-400-normal.woff2';
-import inter600 from '@fontsource/inter/files/inter-latin-600-normal.woff2';
-import reenieBeanie from '@fontsource/reenie-beanie/files/reenie-beanie-latin-400-normal.woff2';
+import { ClientRouter } from 'astro:transitions'
+import '@/styles/global.css'
+import '@fontsource/inter/latin-400.css'
+import '@fontsource/inter/latin-600.css'
+import '@fontsource/reenie-beanie/latin-400.css'
+import inter400 from '@fontsource/inter/files/inter-latin-400-normal.woff2'
+import inter600 from '@fontsource/inter/files/inter-latin-600-normal.woff2'
+import reenieBeanie from '@fontsource/reenie-beanie/files/reenie-beanie-latin-400-normal.woff2'
 
 interface Props {
-  title: string;
-  description: string;
-  image?: string;
+  title: string
+  description: string
+  image?: string
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
-const { title, description, image = '/og.webp' } = Astro.props;
+const { title, description, image = '/og.webp' } = Astro.props
 ---
 
 <!-- Global Metadata -->
@@ -27,7 +28,13 @@ const { title, description, image = '/og.webp' } = Astro.props;
 <!-- Font preloads -->
 <link rel="preload" href={inter400} as="font" type="font/woff2" crossorigin />
 <link rel="preload" href={inter600} as="font" type="font/woff2" crossorigin />
-<link rel="preload" href={reenieBeanie} as="font" type="font/woff2" crossorigin />
+<link
+  rel="preload"
+  href={reenieBeanie}
+  as="font"
+  type="font/woff2"
+  crossorigin
+/>
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
@@ -50,3 +57,6 @@ const { title, description, image = '/og.webp' } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<!-- View Tranisitons -->
+<ClientRouter />
