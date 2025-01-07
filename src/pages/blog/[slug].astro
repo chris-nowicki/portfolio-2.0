@@ -4,7 +4,6 @@ import PageLayout from '@/layouts/PageLayout.astro'
 import Container from '@/components/Container.astro'
 import { formatDate } from '@/utils/formatDate'
 import { readingTime } from '@/utils/readingTime'
-import Clock from '@/assets/icons/clock.svg'
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog')
@@ -25,7 +24,7 @@ const postReadTime = readingTime(post.rendered?.html ?? '')
         <header class="flex flex-col gap-2">
           <h1 class="text-xl font-bold sm:text-2xl">{post.data.title}</h1>
           <span class="flex items-center gap-2 text-sm text-muted-foreground"
-            >{postDate} | <Clock size={18} /> {postReadTime}</span
+            >{postDate} | {postReadTime}</span
           >
         </header>
         <Content />
