@@ -26,7 +26,7 @@ const years = getSortedYears(posts)
 
       <div>
         {
-          years.map((year: string) => (
+          years.map((year) => (
             <div>
               <h2 class="mb-4 mt-8 px-2 text-lg font-bold">{year}</h2>
               {posts[year].map((post) => (
