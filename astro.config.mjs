@@ -8,6 +8,9 @@ import tailwind from '@astrojs/tailwind'
 export default defineConfig({
   site: 'https://www.chrisnowicki.dev',
   integrations: [tailwind()],
+  image: {
+    domains: ['cloudinary.com'],
+  },
   markdown: {
     shikiConfig: {
       theme: 'catppuccin-mocha',
