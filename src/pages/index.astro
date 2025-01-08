@@ -23,10 +23,16 @@ const speaking = (await getCollection('speaking'))
 <PageLayout title={HOME.TITLE} description={HOME.DESCRIPTION}>
   <Container>
     <section
-      class="relative mb-16 px-2 pt-28 text-sm sm:mb-28 sm:pt-40 sm:text-base">
+      class="relative mb-16 px-2 pt-28 text-sm sm:mb-40 sm:pt-48 sm:text-base">
       <header class="mb-4">
         <h1 class="text-xl font-bold sm:text-2xl">Hello, I'm Chris Nowicki</h1>
-        <p>Software Engineering Lead at This Dot Labs.</p>
+        <p>
+          Software Engineering Lead at <a
+            href="https://www.thisdot.co"
+            target="_blank"
+            class="font-bold text-blue-600 hover:underline">This Dot Labs</a
+          >.
+        </p>
       </header>
 
       <div class="space-y-8">
