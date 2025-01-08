@@ -2,8 +2,8 @@
 date: 2023-04-18
 title: 'How to create a Vercel Cron Job using NextJS 13'
 description: 'Learn to create Vercel cron jobs in Next.js.'
-cover: 'https://res.cloudinary.com/ddetibihn/image/upload/v1710262757/portfolio/blog/vercel-cron-job-cover.webp'
-published: true
+image: 'https://res.cloudinary.com/ddetibihn/image/upload/v1710262757/portfolio/blog/vercel-cron-job-cover.webp'
+draft: false
 ---
 
 As a new developer I am constantly trying new technologies and recently have really enjoyed coding in NextJS 13 using their `/app` directory experimental feature.

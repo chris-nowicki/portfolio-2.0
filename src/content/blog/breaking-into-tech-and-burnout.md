@@ -2,8 +2,8 @@
 date: 2024-05-01
 title: 'The Reality of Burnout and Breaking Into Tech'
 description: 'Overcoming burnout through digital detox and self-care.'
-cover: 'https://res.cloudinary.com/ddetibihn/image/upload/f_auto,q_auto,w_768,c_limit/v1714500633/portfolio/blog/kezyy9ztddthfyyp1h6n.webp'
-published: true
+image: 'https://res.cloudinary.com/ddetibihn/image/upload/f_auto,q_auto,w_768,c_limit/v1714500633/portfolio/blog/kezyy9ztddthfyyp1h6n.webp'
+draft: false
 ---
 
 I recently got back from a 10 day vacation with my wife and family. It was a much needed break from the daily grind of work, coding, and life in general. I removed social media, discord, and slack from my phone and focused on quality time with the family and recovering

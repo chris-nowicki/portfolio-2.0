@@ -38,27 +38,82 @@
     --input: 240 3.7% 15.9%; /* slate-800 */
     --ring: 240 4.9% 83.9%; /* slate-300 */
   }
+  html,
+  body {
+    @apply size-full scroll-smooth bg-background font-sans text-foreground antialiased;
+  }
+
+  body {
+    @apply flex flex-col;
+  }
 }
 
-html,
-body {
-  @apply size-full scroll-smooth bg-background text-foreground;
-}
+@layer components {
+  .prose {
+    /* Headings */
+    h1 {
+      @apply scroll-m-28 text-4xl font-extrabold tracking-tight md:text-5xl;
+    }
 
-body {
-  @apply font-sans antialiased;
-  @apply flex flex-col;
+    h2 {
+      @apply scroll-m-28 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0;
+    }
+
+    h3 {
+      @apply scroll-m-28 text-2xl font-semibold tracking-tight;
+    }
+
+    h4 {
+      @apply scroll-m-28 text-xl font-semibold tracking-tight;
+    }
+
+    /* Lists */
+    ul {
+      @apply my-6 ml-6 list-disc marker:font-bold marker:text-primary [&>li]:mt-2;
+    }
+
+    ol {
+      @apply my-6 ml-6 list-decimal marker:font-bold marker:text-primary [&>li]:mt-2;
+    }
+
+    /* Text elements */
+    p {
+      @apply mb-6 leading-7 [&:not(:first-child)]:mt-6;
+    }
+
+    blockquote {
+      @apply mt-6 border-l-4 border-primary pl-6 italic sm:border-l-8;
+    }
+
+    /* Code blocks */
+    pre {
+      @apply overflow-auto rounded-md p-2;
+    }
+
+    code {
+      @apply my-1 border-0 text-sm !leading-normal md:text-sm;
+    }
+
+    /* Subheading anchors */
+    .subheading-anchor {
+      @apply relative text-foreground no-underline;
+
+      &::before {
+        @apply absolute -left-[30px] top-0 text-muted-foreground/40 opacity-0 transition-opacity content-['#'];
+      }
+
+      &:hover::before {
+        @apply opacity-100;
+      }
+    }
+  }
 }
 
 main {
   @apply flex-1;
 }
 
-.debug-first {
-  outline: 2px solid red;
-}
-
 nav {
-  @apply fixed left-0 right-0 top-0 z-50 py-5;
+  @apply fixed left-0 right-0 top-0 z-50 pb-1 pt-5;
   @apply saturate-200 backdrop-blur-sm;
 }
