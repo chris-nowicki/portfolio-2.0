@@ -1,6 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config'
-import rehypeSlug from 'rehype-slug'
+import { rehypeHeadingIds } from '@astrojs/markdown-remark'
 import rehypeAutoLinkHeadings from 'rehype-autolink-headings'
 import tailwind from '@astrojs/tailwind'
 
@@ -24,7 +24,7 @@ export default defineConfig({
       wrap: true,
     },
     rehypePlugins: [
-      rehypeSlug,
+      rehypeHeadingIds,
       [
         rehypeAutoLinkHeadings,
         {
