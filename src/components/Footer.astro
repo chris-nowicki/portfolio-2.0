@@ -5,6 +5,7 @@ import VercelIcon from '@/assets/icons/vercel.svg'
 const links = [
   { href: '/', label: 'home' },
   { href: '/now', label: 'now' },
+  { href: '/blog', label: 'blog' },
   { href: '/speaking', label: 'speaking' },
   { href: '/uses', label: 'uses' },
 ]
@@ -12,8 +13,8 @@ const links = [
 
 <Container>
   <footer
-    class="mb-10 flex flex-col items-center justify-between gap-8 sm:flex-row sm:gap-0">
-    <div class="text-sm">
+    class="mb-10 flex flex-col items-center justify-between gap-8 px-2 sm:flex-row sm:gap-0">
+    <div class="flex w-full flex-col items-start text-sm">
       <p>
         <strong>Sitemap:</strong>
 
@@ -29,7 +30,9 @@ const links = [
         }
       </p>
       <p>
-        <strong>Built With:</strong> Astro, TypeScript, Tailwind, and lots of <span class="hover:animate-pulse">❤</span>
+        <strong>Built With:</strong> Astro, TypeScript, Tailwind, and lots of <span
+          class="hover:animate-pulse">❤</span
+        >
       </p>
     </div>
     <div class="flex items-center gap-2">
