@@ -2,10 +2,18 @@
 import { ClientRouter } from 'astro:transitions'
 import '@/styles/global.css'
 import '@fontsource/inter/latin-400.css'
+import '@fontsource/inter/latin-400-italic.css'
 import '@fontsource/inter/latin-600.css'
+import '@fontsource/inter/latin-600-italic.css'
+import '@fontsource/inter/latin-700.css'
+import '@fontsource/inter/latin-700-italic.css'
 import '@fontsource/reenie-beanie/latin-400.css'
 import inter400 from '@fontsource/inter/files/inter-latin-400-normal.woff2'
+import inter400Italic from '@fontsource/inter/files/inter-latin-400-italic.woff2'
 import inter600 from '@fontsource/inter/files/inter-latin-600-normal.woff2'
+import inter600Italic from '@fontsource/inter/files/inter-latin-600-italic.woff2'
+import inter700 from '@fontsource/inter/files/inter-latin-700-normal.woff2'
+import inter700Italic from '@fontsource/inter/files/inter-latin-700-italic.woff2'
 import reenieBeanie from '@fontsource/reenie-beanie/files/reenie-beanie-latin-400-normal.woff2'
 
 interface Props {
@@ -27,8 +35,29 @@ const { title, description, image = '/og.webp' } = Astro.props
 
 <!-- Font preloads -->
 <link rel="preload" href={inter400} as="font" type="font/woff2" crossorigin />
+<link
+  rel="preload"
+  href={inter400Italic}
+  as="font"
+  type="font/woff2"
+  crossorigin
+/>
 <link rel="preload" href={inter600} as="font" type="font/woff2" crossorigin />
 <link
+  rel="preload"
+  href={inter600Italic}
+  as="font"
+  type="font/woff2"
+  crossorigin
+/>
+<link rel="preload" href={inter700} as="font" type="font/woff2" crossorigin />
+<link
+  rel="preload"
+  href={inter700Italic}
+  as="font"
+  type="font/woff2"
+  crossorigin
+  <link
   rel="preload"
   href={reenieBeanie}
   as="font"

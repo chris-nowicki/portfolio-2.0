@@ -3,11 +3,13 @@ import { defineConfig } from 'astro/config'
 import { rehypeHeadingIds } from '@astrojs/markdown-remark'
 import rehypeAutoLinkHeadings from 'rehype-autolink-headings'
 import tailwind from '@astrojs/tailwind'
+import vercel from '@astrojs/vercel'
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.chrisnowicki.dev',
   integrations: [tailwind()],
+
   image: {
     remotePatterns: [
       {
@@ -18,6 +20,7 @@ export default defineConfig({
       },
     ],
   },
+
   markdown: {
     shikiConfig: {
       theme: 'catppuccin-mocha',
@@ -37,7 +40,10 @@ export default defineConfig({
       ],
     ],
   },
+
   experimental: {
     svg: true,
   },
+
+  adapter: vercel(),
 })
