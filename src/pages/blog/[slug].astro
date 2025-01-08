@@ -4,6 +4,7 @@ import PageLayout from '@/layouts/PageLayout.astro'
 import Container from '@/components/Container.astro'
 import { formatDate } from '@/utils/formatDate'
 import { readingTime } from '@/utils/readingTime'
+import { Image } from 'astro:assets'
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog')
@@ -27,7 +28,7 @@ const postReadTime = readingTime(post.rendered?.html ?? '')
         >
         {
           post.data.image && (
-            <img
+            <Image
               src={post.data.image}
               alt={post.data.title}
               width={768}

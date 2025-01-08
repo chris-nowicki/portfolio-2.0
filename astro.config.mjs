@@ -9,7 +9,14 @@ export default defineConfig({
   site: 'https://www.chrisnowicki.dev',
   integrations: [tailwind()],
   image: {
-    domains: ['cloudinary.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
   markdown: {
     shikiConfig: {
