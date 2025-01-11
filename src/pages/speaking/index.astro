@@ -1,13 +1,13 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content'
-import { BLOG } from '@/lib/site'
+import { SPEAKING } from '@/lib/site'
 import PageLayout from '@/layouts/PageLayout.astro'
 import Container from '@/components/Container.astro'
-import LinkItem from '@/components/LinkItem.astro'
 import { groupEntriesByYear, getSortedYears } from '@/utils/utils.ts'
+import ContentSection from '@/components/ContentSection.astro'
 
 const data = (await getCollection('speaking')).sort(
-  (a, b) => b.data.id.valueOf() - a.data.id.valueOf()
+  (a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
 )
 
 type Speaking = Record<string, CollectionEntry<'speaking'>[]>
@@ -16,28 +16,26 @@ const speaking: Speaking = groupEntriesByYear<'speaking'>(data)
 const years = getSortedYears(speaking)
 ---
 
-<PageLayout title={BLOG.TITLE} description={BLOG.DESCRIPTION}>
+<PageLayout title={SPEAKING.TITLE} description={SPEAKING.DESCRIPTION}>
   <Container>
     <section
-      class="relative mb-16 pt-28 text-sm sm:mb-28 sm:pt-40 sm:text-base">
-      <header class="mb-4">
+      class="relative mb-16 px-2 pt-28 text-sm sm:mb-28 sm:pt-40 sm:text-base">
+      <header class="mb-16 px-2">
         <h1 class="text-xl font-bold sm:text-2xl">Speaking</h1>
       </header>
 
       <div>
         {
           years.map((year) => (
-            <div>
-              <h2 class="mb-4 mt-8 text-lg font-bold">{year}</h2>
-              {speaking[year].map((entry) => (
-                <LinkItem
-                  href={entry.data.videoUrl}
-                  name={entry.data.title}
-                  description={entry.data.description}
-                  external={true}
-                />
-              ))}
-            </div>
+            <ContentSection
+              title={year}
+              items={speaking[year].map((engagement) => ({
+                href: engagement.data.videoUrl,
+                name: engagement.data.title,
+                description: engagement.data.description,
+                external: true,
+              }))}
+            />
           ))
         }
       </div>
