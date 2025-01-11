@@ -2,28 +2,117 @@
 import { NOW } from '@/lib/site'
 import PageLayout from '@/layouts/PageLayout.astro'
 import Container from '@/components/Container.astro'
+import Me from '@/assets/images/me.webp'
+import { Image } from 'astro:assets'
 ---
 
 <PageLayout title={NOW.TITLE} description={NOW.DESCRIPTION}>
   <Container>
-    <section
-      class="relative mb-16 px-2 pt-28 text-sm sm:mb-28 sm:pt-40 sm:text-base">
-      <header class="mb-4">
-        <h1 class="text-xl font-bold sm:text-2xl">Now</h1>
-        <p>Updated: January 6th, 2025</p>
+    <section class="mb-20 px-2 pt-28 text-sm sm:mb-40 sm:pt-40 sm:text-base">
+      <header class="mb-9">
+        <Image
+          src={Me}
+          alt="Photo of me"
+          loading={'eager'}
+          width={200}
+          height={200}
+          class="mb-4 rounded-lg shadow-xl"
+        />
+        <h1 class="text-xl font-bold sm:text-4xl">Now</h1>
+        <p class="text-sm text-muted-foreground">January 10th, 2025</p>
       </header>
 
-      <div class="space-y-8">
-        <p>
-          I'm currently leading the engineering team at This Dot Labs. I'm
-          working on a few side projects, including a new course on productivity
-          and a new blog post series on minimalism.
-        </p>
+      <p>
+        I'm a Software Engineering Lead at This Dot Labs, based in the Atlanta
+        area. Currently balancing tech leadership with my passion for helping
+        other developers thrive, while also mastering the art of smoking meat
+        (because life needs flavor!).
+      </p>
 
+      <div class="mt-9 space-y-2">
+        <h2 class="flex items-center gap-2 text-lg font-bold sm:text-xl">
+          Current Interests
+        </h2>
+        <ul
+          class="my-6 ml-6 list-disc marker:font-bold marker:text-primary [&>li]:mt-2">
+          <li>
+            Exploring minimalist design principles - because I firmly believe
+            that less is more when it comes to digital experiences
+          </li>
+          <li>Preparing conference talks and CFPs for upcoming tech events</li>
+          <li>Building connections in the Atlanta tech community</li>
+        </ul>
+      </div>
+
+      <div class="mt-9 space-y-2">
+        <h2 class="flex items-center gap-2 text-lg font-bold sm:text-xl">
+          Current Projects
+        </h2>
         <p>
-          I'm also working on a new talk for the upcoming conference season. I'm
-          excited to share more details soon!
+          I'm pouring my energy into a project that's close to my heart:
+          building a comprehensive resource website for developers who struggle
+          with productivity. As someone who navigates ADHD, I understand the
+          unique challenges developers face. This site will:
         </p>
+        <ul
+          class="my-6 ml-6 list-disc marker:font-bold marker:text-primary [&>li]:mt-2">
+          <li>
+            Provide practical productivity strategies tailored for
+            neurodivergent developers
+          </li>
+          <li>
+            Share resources for maintaining mental and physical health in tech
+          </li>
+          <li>
+            Create a community space for sharing what works (and what doesn't)
+          </li>
+        </ul>
+      </div>
+
+      <div class="mt-9 space-y-2">
+        <h2 class="flex items-center gap-2 text-lg font-bold sm:text-xl">
+          What's Next
+        </h2>
+        <p>
+          The Atlanta tech scene is heating up, and I'm here for it! Looking
+          forward to:
+        </p>
+        <ul
+          class="my-6 ml-6 list-disc marker:font-bold marker:text-primary [&>li]:mt-2">
+          <li>
+            Speaking at local meetups (come say hi if you're in the area!)
+          </li>
+          <li>
+            Attending Render ATL in June - can't wait to connect with the
+            community
+          </li>
+          <li>
+            Continuing to build and share resources that make tech more
+            accessible and enjoyable for everyone
+          </li>
+        </ul>
+      </div>
+
+      <div class="mt-9 flex flex-col gap-4 border-t pt-4">
+        <p>
+          This is my now page, inspired by <a
+            href="https://nownownow.com/about"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-blue-600 hover:underline"
+            >Derek Sivers
+          </a>and <a
+            href="https://x.com/sivers"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-blue-600 hover:underline">nownownow</a
+          >
+        </p>
+        <p class="border-l-4 border-primary pl-2 italic">
+          Tip: Life's too short for cluttered code or complicated processes.
+          Keep it simple, make it work, then make it better.
+        </p>
+        <p class="mt-2 font-cursive text-4xl">- Chris Nowicki</p>
       </div>
     </section>
   </Container>
