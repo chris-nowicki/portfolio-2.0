@@ -15,7 +15,7 @@ const BlogSearch = ({ posts }: Props): JSX.Element => {
   const fuse = useMemo(() => {
     const options = {
       keys: ['data.title', 'data.description', 'data.category', 'data.tags'],
-      threshold: 0.3, // Adjust this value to control fuzziness (0.0 = exact match, 1.0 = very fuzzy)
+      threshold: 0.3,
       includeScore: true,
       useExtendedSearch: true,
     }
