@@ -1,5 +1,5 @@
 ---
-import LinkItem from './LinkItem.astro'
+import ContentItem from './ContentItem.astro'
 import { cn } from '@/utils/utils'
 
 interface Props {
@@ -36,7 +36,7 @@ const { title, viewAllLink, items, class: updatedClass = '' } = Astro.props
   <div>
     {
       items.map((item) => (
-        <LinkItem
+        <ContentItem
           href={item.href}
           name={item.name}
           description={item.description}
