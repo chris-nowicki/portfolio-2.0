@@ -43,6 +43,10 @@
     @apply size-full scroll-smooth bg-background font-sans text-foreground antialiased;
   }
 
+  html {
+    overflow-y: scroll;
+  }
+
   body {
     @apply flex flex-col;
   }
