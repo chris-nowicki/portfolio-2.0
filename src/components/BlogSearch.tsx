@@ -42,7 +42,7 @@ const BlogSearch = ({ posts }: Props): JSX.Element => {
         {searchQuery.trim() && (
           <button
             onClick={() => setSearchQuery('')}
-            className="-mr-2 p-2 hover:text-primary/50"
+            className="absolute right-4 top-1/2 -mr-2 -translate-y-1/2 p-2 hover:text-primary/50"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +54,7 @@ const BlogSearch = ({ posts }: Props): JSX.Element => {
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              className="absolute right-4 top-1/2 -translate-y-1/2 transform"
+              className="transform"
             >
               <path d="M18 6 6 18" />
               <path d="m6 6 12 12" />
