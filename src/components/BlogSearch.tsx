@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'preact/hooks'
 import type { CollectionEntry } from 'astro:content'
 import type { JSX } from 'preact'
+import Fuse from 'fuse.js'
 
 type BlogPost = CollectionEntry<'blog'>
 
@@ -11,27 +12,22 @@ interface Props {
 const BlogSearch = ({ posts }: Props): JSX.Element => {
   const [searchQuery, setSearchQuery] = useState('')
 
+  const fuse = useMemo(() => {
+    const options = {
+      keys: ['data.title', 'data.description', 'data.category', 'data.tags'],
+      threshold: 0.3, // Adjust this value to control fuzziness (0.0 = exact match, 1.0 = very fuzzy)
+      includeScore: true,
+      useExtendedSearch: true,
+    }
+    return new Fuse(posts, options)
+  }, [posts])
+
   const filteredPosts = useMemo(() => {
-    const query = searchQuery.trim().toLowerCase()
-    if (!query) return posts
+    if (!searchQuery.trim()) return posts
 
-    return posts.filter((post) => {
-      const isExactCategorySearch = posts.some(
-        (p) => p.data.category.toLowerCase() === query
-      )
-
-      if (isExactCategorySearch) {
-        return post.data.category.toLowerCase() === query
-      }
-
-      return (
-        post.data.title.toLowerCase().includes(query) ||
-        (post.data.description &&
-          post.data.description.toLowerCase().includes(query)) ||
-        post.data.tags.some((tag) => tag.toLowerCase().includes(query))
-      )
-    })
-  }, [posts, searchQuery])
+    const results = fuse.search(searchQuery.trim())
+    return results.map((result) => result.item)
+  }, [fuse, searchQuery])
 
   return (
     <div>
@@ -41,7 +37,7 @@ const BlogSearch = ({ posts }: Props): JSX.Element => {
           value={searchQuery}
           onInput={(e) => setSearchQuery((e.target as HTMLInputElement).value)}
           placeholder="Search by title, category, or tag ..."
-          className="focus:border- w-full rounded-lg border border-gray-300 bg-white px-4 py-2 pl-4 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
+          className="w-full rounded-lg border border-gray-300 bg-white px-4 py-2 pl-4 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
         />
         {searchQuery.trim() && (
           <button
