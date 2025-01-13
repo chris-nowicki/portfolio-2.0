@@ -9,8 +9,8 @@ const projects = defineCollection({
     description: z.string(),
     gitHubUrl: z.string(),
     liveSiteUrl: z.string(),
-  }),
-})
+  })
+})  
 
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.md', base: 'src/content/blog' }),
@@ -19,9 +19,11 @@ const blog = defineCollection({
     title: z.string(),
     description: z.string(),
     image: z.string().optional(),
+    category: z.string(),
+    tags: z.array(z.string()),
     draft: z.boolean(),
-  }),
-})
+  })  
+})  
 
 const speaking = defineCollection({
   loader: file('src/content/speaking/speaking.json'),
@@ -31,7 +33,7 @@ const speaking = defineCollection({
     title: z.string(),
     description: z.string(),
     videoUrl: z.string(),
-  }),
-})
+  })
+}) 
 
 export const collections = { projects, blog, speaking }

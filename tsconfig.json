@@ -4,10 +4,13 @@
     "strictNullChecks": true,
     "allowJs": true,
     "baseUrl": ".",
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "types": ["preact"]
   },
-  "include": [".astro/types.d.ts", "**/*"],
+  "include": [".astro/types.d.ts", "**/*", "src/**/*.tsx"],
   "exclude": ["dist"]
 }

@@ -2,6 +2,8 @@
 date: 2023-05-22
 title: 'How to Secure Vercel Cron Job routes in NextJS 13'
 description: 'Secure Vercel cron routes with bearer token authentication.'
+category: 'tech'
+tags: ['web development', 'vercel', 'next.js', 'cron job']
 draft: false
 ---
 
