@@ -37,12 +37,12 @@ const BlogSearch = ({ posts }: Props): JSX.Element => {
           value={searchQuery}
           onInput={(e) => setSearchQuery((e.target as HTMLInputElement).value)}
           placeholder="Search by title, category, or tag ..."
-          className="w-full rounded-lg border border-gray-300 bg-white px-4 py-2 pl-4 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
+          className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 pl-4 text-base focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary sm:py-2"
         />
         {searchQuery.trim() && (
           <button
             onClick={() => setSearchQuery('')}
-            className="hover:text-primary/50"
+            className="-mr-2 p-2 hover:text-primary/50"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -64,26 +64,26 @@ const BlogSearch = ({ posts }: Props): JSX.Element => {
       </div>
 
       <div>
-        <ul className="space-y-4">
+        <ul className="space-y-4 sm:space-y-6">
           {filteredPosts.map((post) => (
             <li key={post.id}>
               <a
                 href={`/blog/${post.id}`}
-                class="group flex items-center justify-between border-b p-2 transition-colors duration-200 ease-in-out"
+                class="group -mx-2 flex items-center justify-between border-b p-2 pb-2 transition-colors duration-200 ease-in-out active:bg-gray-50"
               >
-                <div class="mr-4">
+                <div class="mr-2 sm:mr-4">
                   <h3 class="text-sm font-semibold group-hover:text-blue-600 sm:text-base">
                     {post.data.title}
                   </h3>
                   <p class="text-foreground-muted text-sm sm:text-base">
                     {post.data.description}
                   </p>
-                  <div className="mt-2 flex items-center gap-1">
+                  <div className="mt-3 flex flex-wrap items-center gap-1">
                     <div className="rounded-full bg-primary px-2 text-sm text-white">
                       {post.data.category}
                     </div>
                     <div>
-                      <ul className="flex gap-1">
+                      <ul className="flex flex-wrap gap-1">
                         {post.data.tags.map((tag) => (
                           <li
                             key={tag}
@@ -96,7 +96,7 @@ const BlogSearch = ({ posts }: Props): JSX.Element => {
                     </div>
                   </div>
                 </div>
-                <div class="text-primary">
+                <div class="hidden text-primary sm:block">
                   <svg
                     width="16"
                     height="16"
