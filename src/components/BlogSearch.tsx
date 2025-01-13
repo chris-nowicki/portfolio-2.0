@@ -78,22 +78,20 @@ const BlogSearch = ({ posts }: Props): JSX.Element => {
                   <p class="text-foreground-muted text-sm sm:text-base">
                     {post.data.description}
                   </p>
-                  <div className="mt-3 flex flex-wrap items-center gap-1">
-                    <div className="rounded-full bg-primary px-2 text-sm text-white">
-                      {post.data.category}
-                    </div>
-                    <div>
-                      <ul className="flex flex-wrap gap-1">
-                        {post.data.tags.map((tag) => (
-                          <li
-                            key={tag}
-                            className="rounded-full bg-secondary px-2 text-sm text-black"
-                          >
-                            {`# ${tag}`}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                  <div className="mt-3">
+                    <ul className="flex flex-wrap items-center gap-1">
+                      <li className="rounded-full bg-primary px-2 text-sm text-white">
+                        {post.data.category}
+                      </li>
+                      {post.data.tags.map((tag) => (
+                        <li
+                          key={tag}
+                          className="rounded-full bg-secondary px-2 text-sm text-black"
+                        >
+                          {`# ${tag}`}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
                 <div class="hidden text-primary sm:block">
