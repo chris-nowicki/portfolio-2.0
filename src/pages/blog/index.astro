@@ -1,19 +1,13 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content'
+import { getCollection } from 'astro:content'
 import { BLOG } from '@/lib/site'
 import PageLayout from '@/layouts/PageLayout.astro'
 import Container from '@/components/Container.astro'
-import { groupEntriesByYear, getSortedYears } from '@/utils/utils.ts'
-import ContentSection from '@/components/ContentSection.astro'
+import BlogSearch from '@/components/BlogSearch.tsx'
 
-const data = (await getCollection('blog')).sort(
+const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 )
-
-type Posts = Record<string, CollectionEntry<'blog'>[]>
-const posts: Posts = groupEntriesByYear<'blog'>(data)
-
-const years = getSortedYears(posts)
 ---
 
 <PageLayout title={BLOG.TITLE} description={BLOG.DESCRIPTION}>
@@ -24,20 +18,7 @@ const years = getSortedYears(posts)
         <h1 class="text-xl font-bold sm:text-4xl">Blog</h1>
       </header>
 
-      <div>
-        {
-          years.map((year) => (
-            <ContentSection
-              title={year}
-              items={posts[year].map((post) => ({
-                href: `/blog/${post.id}`,
-                name: post.data.title,
-                description: post.data.description,
-              }))}
-            />
-          ))
-        }
-      </div>
+      <BlogSearch posts={posts} client:load />
     </section>
   </Container>
 </PageLayout>

@@ -2,6 +2,8 @@
 title: How to setup Vercel Postgres Serverless SQL Storage using NextJS
 description: 'Setup Vercel Postgres database with Next.js and Kysely.'
 date: 2023-05-22
+category: 'tech'
+tags: ['web development', 'vercel', 'next.js', 'sql']
 draft: true
 ---
 
