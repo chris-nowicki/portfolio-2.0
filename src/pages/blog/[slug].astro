@@ -5,6 +5,7 @@ import Container from '@/components/Container.astro'
 import { formatDate } from '@/utils/formatDate'
 import { readingTime } from '@/utils/readingTime'
 import { Image } from 'astro:assets'
+import BackLink from '@/components/BackLink'
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog')
@@ -20,9 +21,11 @@ const postReadTime = readingTime(post.rendered?.html ?? '')
 
 <PageLayout title={post.data.title} description={post.data.description}>
   <Container>
-    <article class="px-2 pt-28 text-sm sm:pt-40 sm:text-base">
+    <article class="pt-28 text-sm sm:pt-40 sm:text-base">
       <header class="mb-8 flex flex-col gap-2">
-        <h1 class="text-xl font-bold sm:text-4xl">{post.data.title}</h1>
+        <BackLink client:load />
+
+        <h1 class="mt-8 text-xl font-bold sm:text-4xl">{post.data.title}</h1>
         <span class="flex items-center gap-2 text-sm text-muted-foreground"
           >{postDate} | {postReadTime}</span
         >
@@ -40,6 +43,9 @@ const postReadTime = readingTime(post.rendered?.html ?? '')
       </header>
       <div class="prose">
         <Content />
+      </div>
+      <div class="mb-28 mt-16">
+        <BackLink client:load />
       </div>
     </article>
   </Container>

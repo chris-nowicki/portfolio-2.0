@@ -16,9 +16,9 @@ const { href, name, description, external = false }: Props = Astro.props
   href={href}
   target={external ? '_blank' : '_self'}
   rel={external ? 'noopener noreferrer' : ''}
-  class="group flex items-center justify-between border-b p-2 transition-colors duration-200 ease-in-out hover:bg-primary-foreground first:hover:rounded-t-lg last:hover:rounded-b-lg">
+  class="group flex items-center justify-between border-b pb-2 transition-colors duration-200 ease-in-out">
   <div class="mr-4">
-    <h3 class="text-sm font-semibold sm:text-base">{name}</h3>
+    <h3 class="text-sm font-semibold sm:text-base group-hover:text-blue-600">{name}</h3>
     <p class="text-foreground-muted text-sm sm:text-base">{description}</p>
   </div>
 
