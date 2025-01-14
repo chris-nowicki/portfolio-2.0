@@ -37,7 +37,7 @@ const BlogSearch = ({ posts }: Props): JSX.Element => {
           value={searchQuery}
           onInput={(e) => setSearchQuery((e.target as HTMLInputElement).value)}
           placeholder="Search by title, category, or tag ..."
-          className="w-full border-b border-gray-300 bg-white py-3 pl-4 text-base focus:border-primary focus:outline-none sm:py-2"
+          className="w-full border-b border-gray-300 bg-white py-3 pl-2 text-base focus:border-primary focus:outline-none sm:py-2"
         />
         {searchQuery.trim() && (
           <button
