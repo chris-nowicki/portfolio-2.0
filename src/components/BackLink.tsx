@@ -16,11 +16,17 @@ export default function BackLink() {
         link: `/blog/tag/${tag}`,
         text: `back to ${tag} posts`,
       })
+      // Remove the tag parameter from URL
+      const newUrl = window.location.pathname
+      history.replaceState({}, '', newUrl)
     } else if (category) {
       setBackInfo({
         link: `/blog/category/${category}`,
         text: `back to ${category} posts`,
       })
+      // Remove the category parameter from URL
+      const newUrl = window.location.pathname
+      history.replaceState({}, '', newUrl)
     }
   }, [])
 
