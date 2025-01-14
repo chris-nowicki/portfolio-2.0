@@ -4,7 +4,6 @@ import PageLayout from '@/layouts/PageLayout.astro'
 import Container from '@/components/Container.astro'
 import ArrowRight from '@/assets/icons/arrow-right.svg'
 import ArrowLeft from '@/assets/icons/arrow-left.svg'
-import SquiggleLine from '@/assets/icons/needle-underline.svg'
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog')
@@ -43,10 +42,7 @@ const posts = (
         >
         <h1 class="mb-2 mt-8 text-xl font-bold sm:text-4xl">Blog</h1>
         <p class="text-foreground-muted sm:text-lg">
-          All posts with the <strong class="relative"
-            >{tag}
-            <SquiggleLine class="absolute -bottom-2 left-0 w-full" />
-          </strong> tag
+          All posts with the <strong>{tag}</strong> tag
         </p>
       </header>
 
