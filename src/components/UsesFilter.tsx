@@ -27,12 +27,12 @@ export default function UsesFilter({ uses, className }: Props) {
   return (
     <section className="mb-20 mt-16">
       <h2 className="mb-4 text-center text-xl font-semibold">Categories</h2>
-      <div className="mb-20 flex flex-wrap justify-center gap-2">
+      <div className="mb-20 flex flex-wrap justify-center items-center gap-2">
         {categories.map((category) => (
           <button
             key={category}
             className={cn(
-              'mx-2 rounded-lg border px-4 py-2 text-sm font-semibold transition-colors duration-200 ease-in-out',
+              'rounded-lg border px-4 py-2 text-sm transition-colors duration-200 ease-in-out',
               {
                 'bg-primary text-white':
                   activeCategory === category.toLowerCase(),
