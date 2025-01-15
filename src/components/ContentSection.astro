@@ -11,16 +11,16 @@ interface Props {
   items: {
     href: string
     name: string
-    description: string
+    description?: string
     external?: boolean
   }[]
   class?: string
 }
 
-const { title, viewAllLink, items, class: updatedClass = '' } = Astro.props
+const { title, viewAllLink, items, class: classProps = '' } = Astro.props
 ---
 
-<section class={cn('mb-14 sm:mb-20', updatedClass)}>
+<section class={cn('mb-14 sm:mb-20', classProps)}>
   <header class="mb-6 flex items-center justify-between sm:mb-8">
     <h2 class="text-lg font-bold sm:text-xl">{title}</h2>
     {
@@ -39,7 +39,7 @@ const { title, viewAllLink, items, class: updatedClass = '' } = Astro.props
         <ContentItem
           href={item.href}
           name={item.name}
-          description={item.description}
+          description={item.description || ''}
           external={item.external}
         />
       ))
