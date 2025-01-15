@@ -21,33 +21,50 @@
 </button>
 
 <script>
-  const scrollButton = document.getElementById('scrollToTop')
-  const scrollThreshold = 300
+  function initScrollToTop() {
+    const scrollButton = document.getElementById('scrollToTop')
+    const scrollThreshold = 300
 
-  function toggleScrollButton() {
-    if (scrollButton) {
-      if (window.scrollY > scrollThreshold) {
-        scrollButton.style.opacity = '1'
-        scrollButton.style.pointerEvents = 'auto'
-      } else {
-        scrollButton.style.opacity = '0'
-        scrollButton.style.pointerEvents = 'none'
+    function toggleScrollButton() {
+      if (scrollButton) {
+        if (window.scrollY > scrollThreshold) {
+          scrollButton.style.opacity = '1'
+          scrollButton.style.pointerEvents = 'auto'
+        } else {
+          scrollButton.style.opacity = '0'
+          scrollButton.style.pointerEvents = 'none'
+        }
       }
+    }
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
+    }
+
+    window.addEventListener('scroll', toggleScrollButton)
+    scrollButton?.addEventListener('click', scrollToTop)
+
+    toggleScrollButton()
+
+    return () => {
+      window.removeEventListener('scroll', toggleScrollButton)
+      scrollButton?.removeEventListener('click', scrollToTop)
     }
   }
 
-  function scrollToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    })
-  }
+  let cleanup: (() => void) | undefined
 
-  window.addEventListener('scroll', toggleScrollButton)
-  scrollButton?.addEventListener('click', scrollToTop)
+  cleanup = initScrollToTop()
+
+  document.addEventListener('astro:page-load', () => {
+    if (cleanup) cleanup()
+    cleanup = initScrollToTop()
+  })
 
   document.addEventListener('astro:before-swap', () => {
-    window.removeEventListener('scroll', toggleScrollButton)
-    scrollButton?.removeEventListener('click', scrollToTop)
+    if (cleanup) cleanup()
   })
 </script>
