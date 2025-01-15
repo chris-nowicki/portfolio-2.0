@@ -69,7 +69,7 @@ const BlogSearch = ({ posts }: Props): JSX.Element => {
             <div className="group -mx-2 flex items-center justify-between border-b p-2 pb-2 hover:border-blue-600">
               <div className="group mr-2 sm:mr-4">
                 <a href={`/blog/${post.id}`} className="block">
-                  <h3 className="text-smfont-semibold group-hover:text-blue-600 sm:text-base">
+                  <h3 className="text-sm font-semibold group-hover:text-blue-600 sm:text-base">
                     {post.data.title}
                   </h3>
                   <p className="text-foreground-muted text-sm group-hover:text-blue-600 sm:text-base">
