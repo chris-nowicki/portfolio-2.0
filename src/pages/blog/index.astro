@@ -4,13 +4,23 @@ import Container from '@/components/Container.astro'
 import PageLayout from '@/layouts/PageLayout.astro'
 import { BLOG } from '@/lib/site'
 import { getCollection } from 'astro:content'
+import generateOgImageUrl from '@/utils/generateOgImage'
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 )
+
+const ogImageUrl = generateOgImageUrl({
+  header: '/BLOG',
+  description:
+    'Checkout my latest articles on all things tech and web development!',
+})
 ---
 
-<PageLayout title={BLOG.TITLE} description={BLOG.DESCRIPTION}>
+<PageLayout
+  title={BLOG.TITLE}
+  description={BLOG.DESCRIPTION}
+  image={ogImageUrl}>
   <Container>
     <section class="relative pt-28 text-sm sm:pt-40 sm:text-base">
       <header class="mb-16">
