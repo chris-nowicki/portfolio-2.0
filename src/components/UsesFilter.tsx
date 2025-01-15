@@ -4,10 +4,9 @@ import { useMemo, useState } from 'preact/hooks'
 
 interface Props {
   uses: CollectionEntry<'uses'>[]
-  className?: string
 }
 
-export default function UsesFilter({ uses, className }: Props) {
+export default function UsesFilter({ uses }: Props) {
   const [activeCategory, setActiveCategory] = useState('all')
 
   const categories = useMemo(
@@ -25,9 +24,9 @@ export default function UsesFilter({ uses, className }: Props) {
   }
 
   return (
-    <section className="mb-20 mt-16">
+    <section className="mt-16 transition-all duration-300 ease-in-out">
       <h2 className="mb-4 text-center text-xl font-semibold">Categories</h2>
-      <div className="mb-20 flex flex-wrap justify-center items-center gap-2">
+      <div className="mb-20 flex flex-wrap items-center justify-center gap-2">
         {categories.map((category) => (
           <button
             key={category}
@@ -48,10 +47,7 @@ export default function UsesFilter({ uses, className }: Props) {
       </div>
 
       {filteredUses.map((use) => (
-        <section
-          key={use.data.name}
-          className={cn('mb-14 sm:mb-20', className)}
-        >
+        <section key={use.data.name} className="mt-14 sm:mt-20">
           <header className="mb-6 flex items-center justify-between sm:mb-8">
             <h2 className="text-lg font-bold sm:text-xl">{use.data.name}</h2>
           </header>

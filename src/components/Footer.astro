@@ -13,15 +13,15 @@ const links = [
 
 <Container>
   <footer
-    class="mb-10 flex flex-col items-center justify-between gap-8 sm:flex-row sm:gap-0">
-    <div class="flex w-full sm:w-2/3 flex-col items-start text-sm">
+    class="mb-4 mt-12 flex flex-col items-center justify-between gap-8 sm:flex-row sm:gap-0">
+    <div class="flex w-full flex-col items-start text-sm sm:w-2/3">
       <p>
         <strong>Sitemap:</strong>
 
         {
           links.map((link, index, array) => (
             <span>
-              <a href={link.href} class="hover:underline hover:text-blue-500">
+              <a href={link.href} class="hover:text-blue-500 hover:underline">
                 {link.label}
               </a>
               {index < array.length - 1 && ' / '}
@@ -42,7 +42,11 @@ const links = [
         target="_blank"
         aria-label={`Vercel's website`}
         rel="noopener noreferrer">
-        <VercelIcon width={24} class="hover:animate-[spin_1s_linear_1]" aria-hidden="true" />
+        <VercelIcon
+          width={24}
+          class="hover:animate-[spin_1s_linear_1]"
+          aria-hidden="true"
+        />
       </a>
     </div>
   </footer>
