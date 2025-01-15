@@ -1,10 +1,10 @@
 ---
-import Container from './Container.astro'
 import GitHub from '@/assets/icons/github.svg'
 import LinkedIn from '@/assets/icons/linkedin.svg'
-import X from '@/assets/icons/x.svg'
-import Twitch from '@/assets/icons/twitch.svg'
 import SquiggleLine from '@/assets/icons/needle-underline.svg'
+import Twitch from '@/assets/icons/twitch.svg'
+import X from '@/assets/icons/x.svg'
+import Container from './Container.astro'
 import Link from './Link.astro'
 
 const socialIconClass =
@@ -26,34 +26,34 @@ const socialIconClass =
       If you want to get in touch with me about something or just to say, hi 👋,
       reach out on social media or send me an email at <a
         href="mailto:hello@chrisnowicki.dev"
-        class="text-blue-600 hover:underline">hello@chrisnowicki.dev</a
+        class="font-bold hover:text-blue-600 hover:underline">hello@chrisnowicki.dev</a
       >.
     </p>
 
     <div class="mt-8 flex flex-wrap gap-4">
       <Link
-        href="https://twitter.com/iamwix"
+        to="https://twitter.com/iamwix"
         class={socialIconClass}
         icon={true}
         ariaLabel="Visit my X Profile @iamwix">
         <X size={24} aria-hidden="true" />
       </Link>
       <Link
-        href="https://www.linkedin.com/in/chris-nowicki/"
+        to="https://www.linkedin.com/in/chris-nowicki/"
         class={socialIconClass}
         icon={true}
         ariaLabel="Visit my LinkedIn Profile">
         <LinkedIn size={24} aria-hidden="true" />
       </Link>
       <Link
-        href="https://github.com/chris-nowicki"
+        to="https://github.com/chris-nowicki"
         class={socialIconClass}
         icon={true}
         ariaLabel="Visit my GitHub Profile">
         <GitHub size={24} aria-hidden="true" />
       </Link>
       <Link
-        href="https://www.twitch.tv/chriswix"
+        to="https://www.twitch.tv/chriswix"
         class={socialIconClass}
         icon={true}
         ariaLabel="Visit my Twitch Profile">

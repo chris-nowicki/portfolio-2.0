@@ -1,6 +1,6 @@
 ---
-import Container from './Container.astro'
 import VercelIcon from '@/assets/icons/vercel.svg'
+import Container from './Container.astro'
 
 const links = [
   { href: '/', label: 'home' },
@@ -21,7 +21,7 @@ const links = [
         {
           links.map((link, index, array) => (
             <span>
-              <a href={link.href} class="hover:underline">
+              <a href={link.href} class="hover:underline hover:text-blue-500">
                 {link.label}
               </a>
               {index < array.length - 1 && ' / '}

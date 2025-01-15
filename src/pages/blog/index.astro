@@ -1,9 +1,9 @@
 ---
-import { getCollection } from 'astro:content'
-import { BLOG } from '@/lib/site'
-import PageLayout from '@/layouts/PageLayout.astro'
-import Container from '@/components/Container.astro'
 import BlogSearch from '@/components/BlogSearch.tsx'
+import Container from '@/components/Container.astro'
+import PageLayout from '@/layouts/PageLayout.astro'
+import { BLOG } from '@/lib/site'
+import { getCollection } from 'astro:content'
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()

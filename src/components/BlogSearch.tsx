@@ -1,7 +1,7 @@
-import { useState, useMemo } from 'preact/hooks'
 import type { CollectionEntry } from 'astro:content'
-import type { JSX } from 'preact'
 import Fuse from 'fuse.js'
+import type { JSX } from 'preact'
+import { useMemo, useState } from 'preact/hooks'
 
 type BlogPost = CollectionEntry<'blog'>
 
@@ -66,19 +66,19 @@ const BlogSearch = ({ posts }: Props): JSX.Element => {
       <ul className="space-y-4 sm:space-y-6">
         {filteredPosts.map((post) => (
           <li key={post.id}>
-            <div className="group -mx-2 flex items-center justify-between border-b p-2 pb-2">
-              <div className="mr-2 sm:mr-4">
+            <div className="group -mx-2 flex items-center justify-between border-b p-2 pb-2 hover:border-blue-600">
+              <div className="group mr-2 sm:mr-4">
                 <a href={`/blog/${post.id}`} className="block">
-                  <h3 className="text-sm font-semibold group-hover:text-blue-600 sm:text-base">
+                  <h3 className="text-smfont-semibold group-hover:text-blue-600 sm:text-base">
                     {post.data.title}
                   </h3>
-                  <p className="text-foreground-muted text-sm sm:text-base">
+                  <p className="text-foreground-muted text-sm group-hover:text-blue-600 sm:text-base">
                     {post.data.description}
                   </p>
                 </a>
                 <div className="mt-3">
                   <ul className="flex flex-wrap items-center gap-1">
-                   <li> 
+                    <li>
                       <a
                         href={`/blog/category/${post.data.category.toLowerCase()}`}
                         className="rounded-full bg-primary px-2 text-sm text-white hover:bg-primary/80"
@@ -107,7 +107,7 @@ const BlogSearch = ({ posts }: Props): JSX.Element => {
                     viewBox="0 0 16 16"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                    className="mr-0 h-5 w-5 flex-shrink-0 text-primary/50 transition-all duration-200 ease-in-out group-hover:translate-x-2 group-hover:text-primary sm:mr-2"
+                    className="mr-0 h-5 w-5 flex-shrink-0 text-primary/50 transition-all duration-200 ease-in-out group-hover:translate-x-2 group-hover:text-blue-600 sm:mr-2"
                   >
                     <path
                       fill-rule="evenodd"

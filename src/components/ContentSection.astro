@@ -1,6 +1,6 @@
 ---
-import ContentItem from './ContentItem.astro'
 import { cn } from '@/utils/utils'
+import ContentItem from './ContentItem.astro'
 
 interface Props {
   title: string
@@ -27,7 +27,7 @@ const { title, viewAllLink, items, class: classProps = '' } = Astro.props
       viewAllLink && (
         <a
           href={viewAllLink.href}
-          class="text-sm text-primary hover:underline sm:text-base">
+          class="text-sm text-primary hover:text-blue-600 hover:underline sm:text-base">
           {viewAllLink.text}
         </a>
       )

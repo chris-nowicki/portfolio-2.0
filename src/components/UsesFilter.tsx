@@ -1,6 +1,6 @@
-import { useState, useMemo } from 'preact/hooks'
-import type { CollectionEntry } from 'astro:content'
 import { cn } from '@/utils/utils'
+import type { CollectionEntry } from 'astro:content'
+import { useMemo, useState } from 'preact/hooks'
 
 interface Props {
   uses: CollectionEntry<'uses'>[]

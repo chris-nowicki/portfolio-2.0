@@ -31,7 +31,9 @@ const posts = (
     <section
       class="relative mb-16 pt-28 text-sm sm:mb-28 sm:pt-40 sm:text-base">
       <header class="mb-16">
-        <a href="/blog" class="group flex items-center gap-2 text-blue-600">
+        <a
+          href="/blog"
+          class="group inline-flex items-center gap-2 hover:text-blue-600">
           <ArrowLeft
             size={16}
             class="transition-all duration-200 ease-in-out group-hover:-translate-x-1"
@@ -50,13 +52,13 @@ const posts = (
         {
           posts.map((post) => (
             <li>
-              <div class="group -mx-2 flex items-center justify-between border-b p-2 pb-2">
+              <div class="group -mx-2 flex items-center justify-between border-b hover:border-blue-600 p-2 pb-2">
                 <div class="mr-2 sm:mr-4">
                   <a href={`/blog/${post.id}?tag=${tag}`} class="block">
                     <h3 class="text-sm font-semibold group-hover:text-blue-600 sm:text-base">
                       {post.data.title}
                     </h3>
-                    <p class="text-foreground-muted text-sm sm:text-base">
+                    <p class="text-foreground-muted text-sm sm:text-base group-hover:text-blue-600">
                       {post.data.description}
                     </p>
                   </a>
@@ -85,7 +87,7 @@ const posts = (
                   <a href={`/blog/${post.id}?tag=${tag}`}>
                     <ArrowRight
                       fill="currentColor"
-                      class="mr-0 h-5 w-5 flex-shrink-0 text-primary/50 transition-all duration-200 ease-in-out group-hover:translate-x-2 group-hover:text-primary sm:mr-2"
+                      class="mr-0 h-5 w-5 flex-shrink-0 text-primary/50 transition-all duration-200 ease-in-out group-hover:translate-x-2 group-hover:text-blue-600 sm:mr-2"
                     />
                   </a>
                 </div>

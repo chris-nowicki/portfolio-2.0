@@ -1,6 +1,6 @@
 ---
-import ArrowRight from '@/assets/icons/arrow-right.svg'
 import ArrowRightUp from '@/assets/icons/arrow-right-up.svg'
+import ArrowRight from '@/assets/icons/arrow-right.svg'
 
 interface Props {
   href: string
@@ -16,21 +16,21 @@ const { href, name, description, external = false }: Props = Astro.props
   href={href}
   target={external ? '_blank' : '_self'}
   rel={external ? 'noopener noreferrer' : ''}
-  class="group flex items-center justify-between border-b pb-2 transition-colors duration-200 ease-in-out">
+  class="group flex items-center justify-between border-b pb-2 transition-colors duration-200 ease-in-out hover:border-blue-600">
   <div class="mr-4">
     <h3 class="text-sm font-semibold sm:text-base group-hover:text-blue-600">{name}</h3>
-    <p class="text-foreground-muted text-sm sm:text-base">{description}</p>
+    <p class="text-foreground-muted text-sm sm:text-base group-hover:text-blue-600">{description}</p>
   </div>
 
   {
     external ?
       <ArrowRightUp
         fill="currentColor"
-        class="mr-0 h-5 w-5 flex-shrink-0 text-primary/50 transition-all duration-200 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary sm:mr-2"
+        class="mr-0 h-5 w-5 flex-shrink-0 text-primary/50 transition-all duration-200 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-blue-600 sm:mr-2"
       />
     : <ArrowRight
         fill="currentColor"
-        class="mr-0 h-5 w-5 flex-shrink-0 text-primary/50 transition-all duration-200 ease-in-out group-hover:translate-x-2 group-hover:text-primary sm:mr-2"
+        class="mr-0 h-5 w-5 flex-shrink-0 text-primary/50 transition-all duration-200 ease-in-out group-hover:translate-x-2 group-hover:text-blue-600 sm:mr-2"
       />
   }
 </a>

@@ -1,12 +1,13 @@
 ---
-import { getCollection } from 'astro:content'
-import { HOME, NUMBER_OF_ENTRIES } from '@/lib/site'
-import PageLayout from '../layouts/PageLayout.astro'
-import Container from '../components/Container.astro'
-import CustomLink from '@/components/CustomLink.astro'
+import ArrowSquiggle from '@/assets/icons/arrow-squiggle.svg'
 import Contact from '@/components/Contact.astro'
 import ContentSection from '@/components/ContentSection.astro'
-import ArrowSquiggle from '@/assets/icons/arrow-squiggle.svg'
+import CustomLink from '@/components/CustomLink.astro'
+import Link from '@/components/Link.astro'
+import { HOME, NUMBER_OF_ENTRIES } from '@/lib/site'
+import { getCollection } from 'astro:content'
+import Container from '../components/Container.astro'
+import PageLayout from '../layouts/PageLayout.astro'
 
 const projects = (await getCollection('projects'))
   .sort((a, b) => b.data.id.valueOf() - a.data.id.valueOf())
@@ -28,11 +29,12 @@ const speaking = (await getCollection('speaking'))
       <header class="mb-4">
         <h1 class="text-xl font-bold sm:text-3xl">Hello, I'm Chris Nowicki</h1>
         <p>
-          Software Engineering Lead at <a
-            href="https://www.thisdot.co"
-            target="_blank"
-            class="font-bold text-blue-600 hover:underline">This Dot Labs</a
-          >.
+          Software Engineering Lead at
+          <Link
+            to="https://www.thisdot.co"
+            ariaLabel="Visit the This Dot Labs website"
+            >This Dot Labs
+          </Link>.
         </p>
       </header>
 
@@ -91,6 +93,7 @@ const speaking = (await getCollection('speaking'))
 
       <ContentSection
         title="Speaking"
+        viewAllLink={{ href: '/speaking', text: 'View all engagements' }}
         items={speaking.map((engagement) => ({
           href: engagement.data.videoUrl,
           name: engagement.data.title,

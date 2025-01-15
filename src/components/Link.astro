@@ -4,19 +4,19 @@ import { cn } from '@/utils/utils'
 interface Props {
   ariaLabel: string
   class?: string
-  href: string
+  to: string
   icon?: boolean
 }
 
-const { ariaLabel, href, icon = false, class: classProps } = Astro.props
+const { ariaLabel, to, icon = false, class: classProps } = Astro.props
 ---
 
 <a
-  href={href}
+  href={to}
   target="_blank"
   rel="noopener noreferrer"
   aria-label={ariaLabel}
-  class={cn(!icon && 'text-blue-600 hover:underline', classProps)}>
+  class={cn(!icon && 'hover:text-blue-600 hover:underline font-bold', classProps)}>
   <slot />
   <span class="sr-only"> (opens in new tab)</span>
 </a>

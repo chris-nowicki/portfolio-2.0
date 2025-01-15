@@ -1,10 +1,9 @@
 ---
-import { getCollection } from 'astro:content'
-import PageLayout from '@/layouts/PageLayout.astro'
-import Container from '@/components/Container.astro'
-import ArrowRight from '@/assets/icons/arrow-right.svg'
 import ArrowLeft from '@/assets/icons/arrow-left.svg'
-import SquiggleLine from '@/assets/icons/needle-underline.svg'
+import ArrowRight from '@/assets/icons/arrow-right.svg'
+import Container from '@/components/Container.astro'
+import PageLayout from '@/layouts/PageLayout.astro'
+import { getCollection } from 'astro:content'
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog')
@@ -31,8 +30,10 @@ const posts = (
   <Container>
     <section
       class="relative mb-16 pt-28 text-sm sm:mb-28 sm:pt-40 sm:text-base">
-      <header class="mb-16">
-        <a href="/blog" class="group flex items-center gap-2 text-blue-600">
+      <header class="mb-16 w-auto">
+        <a
+          href="/blog"
+          class="group inline-flex items-center gap-2 hover:text-blue-600">
           <ArrowLeft
             size={16}
             class="transition-all duration-200 ease-in-out group-hover:-translate-x-1"
@@ -51,7 +52,7 @@ const posts = (
         {
           posts.map((post) => (
             <li>
-              <div class="group -mx-2 flex items-center justify-between border-b p-2 pb-2">
+              <div class="group -mx-2 flex items-center justify-between border-b p-2 pb-2 hover:border-blue-600">
                 <div class="mr-2 sm:mr-4">
                   <a
                     href={`/blog/${post.id}?category=${category}`}
@@ -59,7 +60,7 @@ const posts = (
                     <h3 class="text-sm font-semibold group-hover:text-blue-600 sm:text-base">
                       {post.data.title}
                     </h3>
-                    <p class="text-foreground-muted text-sm sm:text-base">
+                    <p class="text-foreground-muted text-sm group-hover:text-blue-600 sm:text-base">
                       {post.data.description}
                     </p>
                   </a>
@@ -88,7 +89,7 @@ const posts = (
                   <a href={`/blog/${post.id}?category=${category}`}>
                     <ArrowRight
                       fill="currentColor"
-                      class="mr-0 h-5 w-5 flex-shrink-0 text-primary/50 transition-all duration-200 ease-in-out group-hover:translate-x-2 group-hover:text-primary sm:mr-2"
+                      class="mr-0 h-5 w-5 flex-shrink-0 text-primary/50 transition-all duration-200 ease-in-out group-hover:translate-x-2 group-hover:text-blue-600 sm:mr-2"
                     />
                   </a>
                 </div>
