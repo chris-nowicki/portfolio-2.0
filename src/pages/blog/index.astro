@@ -12,10 +12,12 @@ const posts = (await getCollection('blog')).sort(
 
 <PageLayout title={BLOG.TITLE} description={BLOG.DESCRIPTION}>
   <Container>
-    <section
-      class="relative pt-28 text-sm sm:mb-28 sm:pt-40 sm:text-base">
+    <section class="relative pt-28 text-sm sm:mb-28 sm:pt-40 sm:text-base">
       <header class="mb-16">
-        <h1 class="text-xl font-bold sm:text-4xl">Blog</h1>
+        <h1 class="mb-1 text-xl font-bold sm:text-4xl">Blog</h1>
+        <p>
+          My ramblings on the web about all things tech, life, and productivity!
+        </p>
       </header>
 
       <BlogSearch posts={posts} client:load />
