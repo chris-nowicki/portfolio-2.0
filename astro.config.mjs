@@ -4,12 +4,17 @@ import { rehypeHeadingIds } from '@astrojs/markdown-remark'
 import rehypeAutoLinkHeadings from 'rehype-autolink-headings'
 import tailwind from '@astrojs/tailwind'
 import vercel from '@astrojs/vercel'
-import preact from '@astrojs/preact';
+import preact from '@astrojs/preact'
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.chrisnowicki.dev',
-  integrations: [tailwind(), preact()],
+  integrations: [
+    tailwind({
+      applyBaseStyles: false,
+    }),
+    preact(),
+  ],
 
   image: {
     remotePatterns: [
