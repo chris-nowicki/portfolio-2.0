@@ -1,5 +1,5 @@
 ---
-import BackLink from '@/components/BackLink'
+import BlogBackLink from '@/components/BlogBackLink'
 import Container from '@/components/Container.astro'
 import PageLayout from '@/layouts/PageLayout.astro'
 import { formatDate } from '@/utils/formatDate'
@@ -19,7 +19,6 @@ const { Content } = await render(post)
 const postDate = formatDate(post.data.date.toDateString())
 const postReadTime = readingTime(post.rendered?.html ?? '')
 
-
 const ogImageUrl = generateOgImageUrl({
   header: '/BLOG',
   description: post.data.title,
@@ -27,11 +26,14 @@ const ogImageUrl = generateOgImageUrl({
 })
 ---
 
-<PageLayout title={post.data.title} description={post.data.description} image={ogImageUrl}>
+<PageLayout
+  title={post.data.title}
+  description={post.data.description}
+  image={ogImageUrl}>
   <Container>
     <article class="pt-28 text-sm sm:pt-40 sm:text-base">
       <header class="mb-8 flex flex-col gap-2">
-        <BackLink client:load />
+        <BlogBackLink client:load />
 
         <h1 class="mt-8 text-xl font-bold sm:text-4xl">{post.data.title}</h1>
         <span class="flex items-center gap-2 text-sm text-muted-foreground"
@@ -53,7 +55,7 @@ const ogImageUrl = generateOgImageUrl({
         <Content />
       </div>
       <div class="mb-28 mt-16">
-        <BackLink client:load />
+        <BlogBackLink client:load />
       </div>
     </article>
   </Container>
