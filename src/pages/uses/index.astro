@@ -5,13 +5,19 @@ import Link from '@/components/Link.astro'
 import UsesFilter from '@/components/UsesFilter'
 import PageLayout from '@/layouts/PageLayout.astro'
 import { USES } from '@/lib/site'
+import generateOgImageUrl from '@/utils/generateOgImage'
 import { Picture } from 'astro:assets'
 import { getCollection } from 'astro:content'
 
 const uses = await getCollection('uses')
+
+const ogImageUrl = generateOgImageUrl({
+  header: `/${USES.TITLE.toUpperCase()}`,
+  description: USES.DESCRIPTION,
+})
 ---
 
-<PageLayout title={USES.TITLE} description={USES.DESCRIPTION}>
+<PageLayout title={USES.TITLE} description={USES.DESCRIPTION} image={ogImageUrl}>
   <Container>
     <section class="relative pt-28 text-sm sm:pt-40 sm:text-base">
       <header class="mb-8">

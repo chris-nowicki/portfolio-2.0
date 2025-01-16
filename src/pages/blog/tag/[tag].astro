@@ -4,6 +4,7 @@ import PageLayout from '@/layouts/PageLayout.astro'
 import Container from '@/components/Container.astro'
 import ArrowRight from '@/assets/icons/arrow-right.svg'
 import ArrowLeft from '@/assets/icons/arrow-left.svg'
+import generateOgImageUrl from '@/utils/generateOgImage'
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog')
@@ -22,11 +23,17 @@ const posts = (
     return data.tags.includes(tag)
   })
 ).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+
+const ogImageUrl = generateOgImageUrl({
+  header: '/BLOG',
+  description: `Checkout my articles with the tag "${tag}".`,
+})
 ---
 
 <PageLayout
   title={tag.toUpperCase()}
-  description={`Posts in the ${tag.toLocaleUpperCase()} category`}>
+  description={`Posts in the ${tag.toLocaleUpperCase()} category`}
+  image={ogImageUrl}>
   <Container>
     <section
       class="relative mb-16 pt-28 text-sm sm:mb-28 sm:pt-40 sm:text-base">
@@ -52,13 +59,13 @@ const posts = (
         {
           posts.map((post) => (
             <li>
-              <div class="group -mx-2 flex items-center justify-between border-b hover:border-blue-600 p-2 pb-2">
+              <div class="group -mx-2 flex items-center justify-between border-b p-2 pb-2 hover:border-blue-600">
                 <div class="mr-2 sm:mr-4">
                   <a href={`/blog/${post.id}?tag=${tag}`} class="block">
                     <h3 class="text-sm font-semibold group-hover:text-blue-600 sm:text-base">
                       {post.data.title}
                     </h3>
-                    <p class="text-foreground-muted text-sm sm:text-base group-hover:text-blue-600">
+                    <p class="text-foreground-muted text-sm group-hover:text-blue-600 sm:text-base">
                       {post.data.description}
                     </p>
                   </a>

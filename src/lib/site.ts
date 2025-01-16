@@ -20,7 +20,7 @@ export const NOW: Metadata = {
 export const BLOG: Metadata = {
   TITLE: 'Blog',
   DESCRIPTION:
-    'Checkout my latest articles on all things tech, life, and productivity',
+    'Checkout my latest articles on all things life, tech, and productivity.',
 }
 
 export const SPEAKING: Metadata = {
@@ -30,5 +30,5 @@ export const SPEAKING: Metadata = {
 
 export const USES: Metadata = {
   TITLE: 'Uses',
-  DESCRIPTION: 'Tools, software, and hardware I use in my day-to-day life.',
+  DESCRIPTION: 'Software, Hardware & Peripherals I use daily.',
 }

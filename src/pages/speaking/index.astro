@@ -3,6 +3,7 @@ import Container from '@/components/Container.astro'
 import ContentSection from '@/components/ContentSection.astro'
 import PageLayout from '@/layouts/PageLayout.astro'
 import { SPEAKING } from '@/lib/site'
+import generateOgImageUrl from '@/utils/generateOgImage'
 import { getSortedYears, groupEntriesByYear } from '@/utils/utils.ts'
 import { getCollection, type CollectionEntry } from 'astro:content'
 
@@ -14,9 +15,17 @@ type Speaking = Record<string, CollectionEntry<'speaking'>[]>
 const speaking: Speaking = groupEntriesByYear<'speaking'>(data)
 
 const years = getSortedYears(speaking)
+
+const ogImageUrl = generateOgImageUrl({
+  header: `/${SPEAKING.TITLE.toUpperCase()}`,
+  description: SPEAKING.DESCRIPTION,
+})
 ---
 
-<PageLayout title={SPEAKING.TITLE} description={SPEAKING.DESCRIPTION}>
+<PageLayout
+  title={SPEAKING.TITLE}
+  description={SPEAKING.DESCRIPTION}
+  image={ogImageUrl}>
   <Container>
     <section class="relative pt-28 text-sm sm:pt-40 sm:text-base">
       <header class="mb-16">

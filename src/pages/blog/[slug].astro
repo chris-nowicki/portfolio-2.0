@@ -3,6 +3,7 @@ import BackLink from '@/components/BackLink'
 import Container from '@/components/Container.astro'
 import PageLayout from '@/layouts/PageLayout.astro'
 import { formatDate } from '@/utils/formatDate'
+import generateOgImageUrl from '@/utils/generateOgImage'
 import { readingTime } from '@/utils/readingTime'
 import { Image } from 'astro:assets'
 import { getCollection, render } from 'astro:content'
@@ -17,9 +18,16 @@ const { Content } = await render(post)
 
 const postDate = formatDate(post.data.date.toDateString())
 const postReadTime = readingTime(post.rendered?.html ?? '')
+
+
+const ogImageUrl = generateOgImageUrl({
+  header: '/BLOG',
+  description: post.data.title,
+  readTime: postReadTime,
+})
 ---
 
-<PageLayout title={post.data.title} description={post.data.description}>
+<PageLayout title={post.data.title} description={post.data.description} image={ogImageUrl}>
   <Container>
     <article class="pt-28 text-sm sm:pt-40 sm:text-base">
       <header class="mb-8 flex flex-col gap-2">

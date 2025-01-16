@@ -3,6 +3,7 @@ import ArrowLeft from '@/assets/icons/arrow-left.svg'
 import ArrowRight from '@/assets/icons/arrow-right.svg'
 import Container from '@/components/Container.astro'
 import PageLayout from '@/layouts/PageLayout.astro'
+import generateOgImageUrl from '@/utils/generateOgImage'
 import { getCollection } from 'astro:content'
 
 export async function getStaticPaths() {
@@ -22,11 +23,17 @@ const posts = (
     return data.category === category
   })
 ).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+
+const ogImageUrl = generateOgImageUrl({
+  header: '/BLOG',
+  description: `Checkout my articles in the ${category.toUpperCase()} category.`,
+})
 ---
 
 <PageLayout
   title={category.toUpperCase()}
-  description={`Posts in the ${category.toUpperCase()} category`}>
+  description={`Posts in the ${category.toUpperCase()} category`}
+  image={ogImageUrl}>
   <Container>
     <section class="m relative pt-28 text-sm sm:pt-40 sm:text-base">
       <header class="mb-16 w-auto">

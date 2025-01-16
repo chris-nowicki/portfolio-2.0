@@ -1,27 +1,36 @@
 import { getCldOgImageUrl } from 'astro-cloudinary/helpers'
+import { formatCloudinaryText } from './formatCloudinaryText'
+
+const publicId = 'portfolio/yrxs2swqsxphrsbhszle'
 
 interface GenerateOgImageUrlProps {
   header: string
   description: string
+  readTime?: string
 }
 
 const generateOgImageUrl = ({
   header,
   description,
+  readTime
 }: GenerateOgImageUrlProps): string => {
+  const formattedDescription = formatCloudinaryText(description)
+
   return getCldOgImageUrl({
-    src: 'portfolio/prrxk4jayndzmzdv0ybn',
+    src: publicId,
     width: 1200,
     height: 630,
+    format: 'jpg', // or whatever format you're using
+    quality: 'auto',
     overlays: [
       {
         position: {
-          x: 50,
-          y: 50,
+          x: 100,
+          y: 110,
           gravity: 'north_west',
         },
         text: {
-          color: 'white',
+          color: 'black',
           fontFamily: 'Arial',
           fontSize: 100,
           fontWeight: 'bold',
@@ -29,19 +38,32 @@ const generateOgImageUrl = ({
         },
       },
       {
-        width: '1150',
+        width: '1000',
         crop: 'fit',
         position: {
-          x: 50,
-          y: 170,
+          x: 100,
+          y: 220,
           gravity: 'north_west',
         },
         text: {
-          color: 'white',
+          color: 'black',
           fontFamily: 'Arial',
-          fontSize: 75,
+          fontSize: 65,
           letterSpacing: -0.05,
-          text: description,
+          text: formattedDescription,
+        },
+      },
+      {
+        position: {
+          x: 205,
+          y: 490,
+          gravity: 'north_west',
+        },
+        text: {
+          color: 'black',
+          fontFamily: 'Arial',
+          fontSize: 35,
+          text: readTime || '',
         },
       },
     ],

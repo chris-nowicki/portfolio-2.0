@@ -11,9 +11,8 @@ const posts = (await getCollection('blog')).sort(
 )
 
 const ogImageUrl = generateOgImageUrl({
-  header: '/BLOG',
-  description:
-    'Checkout my latest articles on all things tech and web development!',
+  header: `/${BLOG.TITLE.toUpperCase()}`,
+  description: BLOG.DESCRIPTION,
 })
 ---
 
