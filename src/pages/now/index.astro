@@ -3,10 +3,18 @@ import Me from '@/assets/images/me.webp'
 import Container from '@/components/Container.astro'
 import PageLayout from '@/layouts/PageLayout.astro'
 import { NOW } from '@/lib/site'
+import generateOgImageUrl from '@/utils/generateOgImage'
 import { Image } from 'astro:assets'
+
+const ogImageUrl = generateOgImageUrl({
+  header: `/${NOW.TITLE.toUpperCase()}`,
+  description: NOW.DESCRIPTION,
+})
+
+console.log(ogImageUrl)
 ---
 
-<PageLayout title={NOW.TITLE} description={NOW.DESCRIPTION}>
+<PageLayout title={NOW.TITLE} description={NOW.DESCRIPTION} image={ogImageUrl}>
   <Container>
     <section class="pt-28 text-sm sm:pt-40 sm:text-base">
       <header class="mb-9">
