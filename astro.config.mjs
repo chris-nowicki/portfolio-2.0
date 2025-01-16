@@ -15,7 +15,6 @@ export default defineConfig({
     }),
     preact(),
   ],
-
   image: {
     remotePatterns: [
       {
@@ -26,7 +25,6 @@ export default defineConfig({
       },
     ],
   },
-
   markdown: {
     shikiConfig: {
       theme: 'catppuccin-mocha',

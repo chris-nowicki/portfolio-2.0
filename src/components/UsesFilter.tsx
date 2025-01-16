@@ -1,8 +1,7 @@
-import { cn } from '@/utils/utils'
 import type { CollectionEntry } from 'astro:content'
 import { useMemo, useState } from 'preact/hooks'
 import { ListItem } from './ListItem'
-import { FilterButton } from './FilterButton'
+import { UsesFilterButton } from './UsesFilterButton'
 
 interface Props {
   uses: CollectionEntry<'uses'>[]
@@ -11,7 +10,7 @@ interface Props {
 export default function UsesFilter({ uses }: Props) {
   const [activeCategory, setActiveCategory] = useState('all')
 
-  const categories = ['All', ...uses.map((use) => use.data.name)].sort((a, b) => 
+  const categories = ['All', ...uses.map((use) => use.data.name)].sort((a, b) =>
     a.localeCompare(b)
   )
 
@@ -29,12 +28,12 @@ export default function UsesFilter({ uses }: Props) {
       <h2 className="mb-4 text-center text-xl font-semibold">Categories</h2>
       <div className="mb-20 flex flex-wrap items-center justify-center gap-2">
         {categories.map((category) => (
-          <FilterButton
+          <UsesFilterButton
             active={category.toLowerCase() === activeCategory}
             onClick={() => handleFilter(category)}
           >
             {category}
-          </FilterButton>
+          </UsesFilterButton>
         ))}
       </div>
 

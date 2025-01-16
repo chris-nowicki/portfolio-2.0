@@ -7,7 +7,7 @@ interface FilterButtonProps {
   children: preact.ComponentChildren
 }
 
-export const FilterButton: FunctionComponent<FilterButtonProps> = ({
+export const UsesFilterButton: FunctionComponent<FilterButtonProps> = ({
   active,
   onClick,
   children,
