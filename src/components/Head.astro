@@ -14,7 +14,7 @@ import '@fontsource/inter/latin-700-italic.css'
 import '@fontsource/inter/latin-700.css'
 import reenieBeanie from '@fontsource/reenie-beanie/files/reenie-beanie-latin-400-normal.woff2'
 import '@fontsource/reenie-beanie/latin-400.css'
-import { ClientRouter } from 'astro:transitions'
+import { ClientRouter, slide } from 'astro:transitions'
 
 interface Props {
   title: string
@@ -94,8 +94,8 @@ const imageUrl = getImageUrl(image)
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={imageUrl} />
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
@@ -104,5 +104,5 @@ const imageUrl = getImageUrl(image)
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={imageUrl} />
 
-<!-- View Tranisitons -->
+<!-- View transitions -->
 <ClientRouter />

@@ -6,6 +6,7 @@ interface ListItemProps {
   title: string
   description?: string
   external?: boolean
+  children?: preact.ComponentChildren
 }
 
 export const ListItem: FunctionComponent<ListItemProps> = ({
@@ -15,14 +16,11 @@ export const ListItem: FunctionComponent<ListItemProps> = ({
   external = false,
   children,
 }) => {
-  const commonClasses =
-    'group flex items-center justify-between border-b pb-2 transition-colors duration-200 ease-in-out hover:border-blue-600'
-
   return (
     <a
       href={href}
       {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-      className={commonClasses}
+      className="group flex items-center justify-between border-b pb-2 transition-colors duration-200 ease-in-out hover:border-blue-600"
     >
       <div className="mr-4">
         <h3 className="text-sm group-hover:text-blue-600 sm:text-base">
@@ -33,11 +31,12 @@ export const ListItem: FunctionComponent<ListItemProps> = ({
             {description}
           </p>
         )}
-
-        {/* use the children for passing in blog category and tags */}
         {children}
       </div>
-      <ArrowIcon direction={external ? 'diagonal-up' : 'right'} />
+      <ArrowIcon
+        direction={external ? 'diagonal-up' : 'right'}
+        key={`arrow-${title}`}
+      />
     </a>
   )
 }

@@ -4,6 +4,8 @@ import Head from '@/components/Head.astro'
 import Nav from '@/components/Nav.astro'
 import { SITE } from '@/lib/site'
 import ScrollToTop from '@/components/ScrollToTop.astro'
+import MobileMenu from '@/components/MobileMenu.astro'
+import { slide } from 'astro:transitions'
 
 interface Props {
   title: string
@@ -25,10 +27,11 @@ const { title, description, image } = Astro.props
   </head>
   <body>
     <Nav />
-    <main>
+    <main transition:animate="slide">
       <slot />
     </main>
     <Footer />
     <ScrollToTop />
+    <MobileMenu transition:animate="slide" />
   </body>
 </html>
