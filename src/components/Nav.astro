@@ -2,27 +2,22 @@
 import Underline from '@/assets/icons/needle-underline.svg'
 import { cn } from '@/utils/utils'
 import Container from './Container.astro'
-
-const navLinks = [
-  { href: '/now', text: 'now' },
-  { href: '/blog', text: 'blog' },
-  { href: '/speaking', text: 'speaking' },
-  { href: '/uses', text: 'uses' },
-]
+import { navLinks } from '@/lib/site'
 
 const pathName = Astro.url.pathname.split('/')[1]
 ---
 
 <nav>
   <Container>
-    <div class="flex items-center justify-between text-muted-foreground mt-2">
+    <div class="mt-2 flex items-center justify-between text-muted-foreground">
       <a
         href="/"
         class="rounded-full border bg-white px-2 py-1 font-cursive transition-colors duration-300 hover:bg-primary-foreground hover:text-foreground sm:text-2xl"
         >CN</a
       >
 
-      <ul class="flex list-none gap-4 font-cursive text-2xl sm:text-3xl">
+      <ul
+        class="hidden list-none gap-4 font-cursive text-2xl sm:text-3xl md:flex">
         {
           navLinks.map((link) => (
             <li>
@@ -46,6 +41,75 @@ const pathName = Astro.url.pathname.split('/')[1]
           ))
         }
       </ul>
+
+      <!-- hamburger icon -->
+      <button
+        class="hamburger z-50 block shadow-2xl focus:outline-none md:hidden"
+        id="menu-btn">
+        <span class="hamburger-top"></span>
+        <span class="hamburger-middle"></span>
+        <span class="hamburger-bottom"></span>
+      </button>
     </div>
   </Container>
 </nav>
+
+<script>
+  import { isOpen } from '@/store'
+
+  function setupNav() {
+    const menuBtn = document.getElementById('menu-btn')
+    if (!menuBtn) return
+
+    // Create the handler function
+    const handleClick = () => {
+      isOpen.set(!isOpen.get())
+    }
+
+    // Add the listener
+    menuBtn.addEventListener('click', handleClick)
+
+    // Return cleanup function
+    return () => {
+      menuBtn.removeEventListener('click', handleClick)
+    }
+  }
+
+  // Initial setup and cleanup handling
+  let cleanup = setupNav()
+  document.addEventListener('astro:after-swap', () => {
+    if (cleanup) cleanup()
+    cleanup = setupNav()
+  })
+</script>
+
+<style>
+  .hamburger {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    transition: all 0.25s;
+    position: relative;
+  }
+
+  .hamburger-top,
+  .hamburger-middle,
+  .hamburger-bottom {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 24px;
+    height: 2px;
+    background: black;
+    transform: rotate(0);
+    transition: all 0.5s;
+  }
+
+  .hamburger-middle {
+    transform: translateY(7px);
+  }
+
+  .hamburger-bottom {
+    transform: translateY(14px);
+  }
+</style>

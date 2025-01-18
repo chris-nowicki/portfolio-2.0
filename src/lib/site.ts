@@ -2,6 +2,13 @@ import type { Site, Metadata } from '@/types'
 
 export const NUMBER_OF_ENTRIES = 3
 
+export const navLinks = [
+  { href: '/now', text: 'now' },
+  { href: '/blog', text: 'blog' },
+  { href: '/speaking', text: 'speaking' },
+  { href: '/uses', text: 'uses' },
+]
+
 export const SITE: Site = {
   NAME: 'Chris Nowicki',
   EMAIL: 'chris@chrisnowicki.dev',

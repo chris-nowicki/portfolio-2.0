@@ -1,0 +1,119 @@
+---
+import { navLinks } from '@/lib/site'
+---
+
+<div 
+  class="fixed inset-0 z-50 bg-white transition-opacity duration-300 opacity-0 pointer-events-none" 
+  id="mobile-menu"
+  style="view-transition-name: mobile-menu;">
+  <div class="ml-12 mt-16 flex h-full flex-col">
+    <ul class="list-none gap-8 text-3xl" id="menu-links">
+      {
+        navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="group relative transition-colors duration-200 ease-in-out hover:text-foreground">
+              /{link.text}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <button
+    class="close fixed right-6 top-8 shadow-2xl focus:outline-none md:hidden"
+    id="menu-close-btn">
+    <span class="close-top"></span>
+    <span class="close-bottom"></span>
+  </button>
+</div>
+
+<script>
+  import { isOpen } from '../store.js'
+
+  function setupMobileMenu() {
+    const mobileMenu = document.getElementById('mobile-menu')
+    const menuCloseBtn = document.getElementById('menu-close-btn')
+    const mobileMenuLinks = document.querySelectorAll('#menu-links a')
+    const body = document.body
+
+    if (!mobileMenu || !menuCloseBtn) return
+
+    isOpen.subscribe((value) => {
+      // Instead of toggling display classes, use opacity and pointer-events
+      requestAnimationFrame(() => {
+        if (value) {
+          mobileMenu.classList.remove('pointer-events-none')
+          mobileMenu.classList.add('pointer-events-auto')
+          mobileMenu.style.opacity = '1'
+          body.style.overflow = 'hidden' // Prevent background scroll
+        } else {
+          mobileMenu.classList.add('pointer-events-none')
+          mobileMenu.classList.remove('pointer-events-auto')
+          mobileMenu.style.opacity = '0'
+          body.style.overflow = '' // Restore scrolling
+        }
+      })
+    })
+
+    const handleClick = () => {
+      isOpen.set(false)
+    }
+
+    menuCloseBtn.addEventListener('click', handleClick)
+    mobileMenuLinks.forEach((link) => {
+      link.addEventListener('click', handleClick)
+    })
+
+    return () => {
+      menuCloseBtn.removeEventListener('click', handleClick)
+      mobileMenuLinks.forEach((link) => {
+        link.removeEventListener('click', handleClick)
+      })
+      // Reset body overflow on cleanup
+      body.style.overflow = ''
+    }
+  }
+
+  let cleanup = setupMobileMenu()
+  document.addEventListener('astro:after-swap', () => {
+    if (cleanup) cleanup()
+    cleanup = setupMobileMenu()
+  })
+</script>
+
+<style>
+  .close {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+  }
+
+  .close-top,
+  .close-bottom {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 24px;
+    height: 2px;
+    background: black;
+    transform: rotate(0);
+    transition: all 0.5s;
+  }
+
+  .close .close-top {
+    transform: rotate(45deg) translateY(6px) translate(6px);
+  }
+
+  .close .close-bottom {
+    transform: rotate(-45deg) translateY(6px) translate(-6px);
+  }
+  
+  /* Add these styles to ensure smooth transitions */
+  #mobile-menu {
+    will-change: opacity;
+    backface-visibility: hidden;
+  }
+</style>

@@ -149,7 +149,7 @@
   }
 
   nav {
-    @apply fixed left-0 right-0 top-0 z-50 pb-1 pt-5;
+    @apply fixed left-0 right-0 top-0 z-40 pb-1 pt-5;
     @apply saturate-200 backdrop-blur-sm;
   }
 }

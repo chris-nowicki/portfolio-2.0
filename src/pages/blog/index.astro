@@ -29,7 +29,7 @@ const ogImageUrl = generateOgImageUrl({
         </p>
       </header>
 
-      <BlogSearch posts={posts} client:load />
+      <BlogSearch posts={posts} client:only="preact" />
     </section>
   </Container>
 </PageLayout>
