@@ -5,12 +5,12 @@ const mobileNavLinks = [{ href: '/', text: 'home' }, ...navLinks]
 ---
 
 <div
-  class="pointer-events-none fixed inset-0 z-50 -translate-x-full bg-white transition-all duration-300 ease-in-out"
+  class="fixed inset-0 z-50 translate-x-full opacity-0 bg-white transition-all duration-300 ease-in-out pointer-events-none"
   id="mobile-menu">
   <div class="ml-12 mt-16 flex h-full flex-col">
     <ul class="list-none gap-8 text-3xl" id="menu-links">
       {
-        mobileNavLinks.map((link, index) => (
+        mobileNavLinks.map((link) => (
           <li>
             <a
               href={link.href}
@@ -43,23 +43,19 @@ const mobileNavLinks = [{ href: '/', text: 'home' }, ...navLinks]
     if (!mobileMenu || !menuCloseBtn) return
 
     isOpen.subscribe((value) => {
-      requestAnimationFrame(() => {
-        if (value) {
-          mobileMenu.classList.remove('pointer-events-none')
-          mobileMenu.classList.remove('-translate-x-full')
-          mobileMenu.classList.add('fixed')
-          mobileMenu.classList.add('pointer-events-auto')
-          mobileMenu.classList.add('translate-x-0')
+      if (value) {
+        requestAnimationFrame(() => {
+          mobileMenu.classList.remove('pointer-events-none', 'translate-x-full', 'opacity-0')
+          mobileMenu.classList.add('pointer-events-auto', 'translate-x-0', 'opacity-100')
           body.style.overflow = 'hidden'
-        } else {
-          mobileMenu.classList.add('-translate-x-full')
-          mobileMenu.classList.remove('translate-x-0')
-          mobileMenu.classList.add('pointer-events-none')
-          mobileMenu.classList.remove('fixed')
-          mobileMenu.classList.remove('pointer-events-auto')
+        })
+      } else {
+        requestAnimationFrame(() => {
+          mobileMenu.classList.add('pointer-events-none', 'translate-x-full', 'opacity-0')
+          mobileMenu.classList.remove('pointer-events-auto', 'translate-x-0', 'opacity-100')
           body.style.overflow = ''
-        }
-      })
+        })
+      }
     })
 
     const handleClick = () => {
@@ -76,7 +72,6 @@ const mobileNavLinks = [{ href: '/', text: 'home' }, ...navLinks]
       mobileMenuLinks.forEach((link) => {
         link.removeEventListener('click', handleClick)
       })
-      // Reset body overflow on cleanup
       body.style.overflow = ''
     }
   }
@@ -115,9 +110,11 @@ const mobileNavLinks = [{ href: '/', text: 'home' }, ...navLinks]
     transform: rotate(-45deg) translateY(6px) translate(-6px);
   }
 
-  /* Add these styles to ensure smooth transitions */
   #mobile-menu {
-    will-change: opacity;
+    will-change: transform, opacity;
     backface-visibility: hidden;
+    transition-property: transform, opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
   }
 </style>
