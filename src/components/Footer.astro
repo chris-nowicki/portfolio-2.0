@@ -1,28 +1,24 @@
 ---
 import VercelIcon from '@/assets/icons/vercel.svg'
 import Container from './Container.astro'
+import { navLinks } from '@/lib/site'
+import Link from './Link.astro'
 
-const links = [
-  { href: '/', label: 'home' },
-  { href: '/now', label: 'now' },
-  { href: '/blog', label: 'blog' },
-  { href: '/speaking', label: 'speaking' },
-  { href: '/uses', label: 'uses' },
-]
+const footerLinks = [{ href: '/', text: 'home' }, ...navLinks]
 ---
 
 <Container>
   <footer
-    class="mb-4 mt-12 flex flex-col items-center justify-between gap-8 sm:flex-row sm:gap-0">
+    class="mb-4 mt-12 flex flex-col  justify-between gap-4 sm:flex-row sm:gap-0">
     <div class="flex w-full flex-col items-start text-sm sm:w-2/3">
       <p>
         <strong>Sitemap:</strong>
 
         {
-          links.map((link, index, array) => (
+          footerLinks.map((link, index, array) => (
             <span>
-              <a href={link.href} class="hover:text-blue-500 hover:underline">
-                {link.label}
+              <a href={link.href} class="hover:text-blue-500">
+                {link.text}
               </a>
               {index < array.length - 1 && ' / '}
             </span>
@@ -35,19 +31,20 @@ const links = [
         >
       </p>
     </div>
-    <div class="flex items-center gap-2">
-      <span>⚡️ by vercel</span>
-      <a
-        href="https://vercel.com"
-        target="_blank"
-        aria-label={`Vercel's website`}
-        rel="noopener noreferrer">
-        <VercelIcon
-          width={24}
-          class="hover:animate-[spin_1s_linear_1]"
-          aria-hidden="true"
-        />
-      </a>
+    <div class="flex items-center rounded-sm bg-black text-white w-[175px] lg:w-full">
+      <div class="border-r border-white px-2 py-2">
+        <Link
+          to="https://www.vercel.com"
+          icon={true}
+          ariaLabel="Visit Vercel's Website"
+          class="group">
+          <VercelIcon
+            size={16}
+            class="transition-all duration-200 ease-in-out group-hover:scale-110"
+          />
+        </Link>
+      </div>
+      <div class="px-2 text-center text-sm">Powered by Vercel</div>
     </div>
   </footer>
-</Container>
+</Container>=
