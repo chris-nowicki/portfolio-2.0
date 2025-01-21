@@ -5,7 +5,7 @@ const mobileNavLinks = [{ href: '/', text: 'home' }, ...navLinks]
 ---
 
 <div
-  class="fixed inset-0 z-50 translate-x-full opacity-0 bg-white transition-all duration-300 ease-in-out pointer-events-none"
+  class="pointer-events-none fixed inset-0 z-50 translate-x-full bg-white opacity-0 transition-all duration-300 ease-in-out"
   id="mobile-menu">
   <div class="ml-12 mt-16 flex h-full flex-col">
     <ul class="list-none gap-8 text-3xl" id="menu-links">
@@ -45,16 +45,34 @@ const mobileNavLinks = [{ href: '/', text: 'home' }, ...navLinks]
     isOpen.subscribe((value) => {
       if (value) {
         requestAnimationFrame(() => {
-          mobileMenu.classList.remove('pointer-events-none', 'translate-x-full', 'opacity-0')
-          mobileMenu.classList.add('pointer-events-auto', 'translate-x-0', 'opacity-100')
+          mobileMenu.classList.remove(
+            'pointer-events-none',
+            'translate-x-full',
+            'opacity-0'
+          )
+          mobileMenu.classList.add(
+            'pointer-events-auto',
+            'translate-x-0',
+            'opacity-100'
+          )
           body.style.overflow = 'hidden'
         })
       } else {
-        requestAnimationFrame(() => {
-          mobileMenu.classList.add('pointer-events-none', 'translate-x-full', 'opacity-0')
-          mobileMenu.classList.remove('pointer-events-auto', 'translate-x-0', 'opacity-100')
-          body.style.overflow = ''
-        })
+        setTimeout(() => {
+          requestAnimationFrame(() => {
+            mobileMenu.classList.add(
+              'pointer-events-none',
+              'translate-x-full',
+              'opacity-0'
+            )
+            mobileMenu.classList.remove(
+              'pointer-events-auto',
+              'translate-x-0',
+              'opacity-100'
+            )
+            body.style.overflow = ''
+          })
+        }, 175)
       }
     })
 
