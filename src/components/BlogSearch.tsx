@@ -32,18 +32,18 @@ const BlogSearch = ({ posts }: Props): JSX.Element => {
 
   return (
     <>
-      <div className="relative mb-14">
+      <div className="relative">
         <input
           type="text"
           value={searchQuery}
           onInput={(e) => setSearchQuery((e.target as HTMLInputElement).value)}
           placeholder="Search by title, category, or tag ..."
-          className="w-full border-b border-gray-300 bg-white py-3 pl-2 text-base focus:border-primary focus:outline-hidden sm:py-2"
+          className="focus:border-primary w-full border-b border-gray-300 bg-white py-3 pl-2 text-base focus:outline-hidden sm:py-2"
         />
         {searchQuery.trim() && (
           <button
             onClick={() => setSearchQuery('')}
-            className="absolute right-4 top-1/2 -mr-2 -translate-y-1/2 p-2 hover:text-primary/50"
+            className="hover:text-primary/50 absolute top-1/2 right-4 -mr-2 -translate-y-1/2 p-2"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +64,7 @@ const BlogSearch = ({ posts }: Props): JSX.Element => {
         )}
       </div>
 
-      <ul className="space-y-4 sm:space-y-6">
+      <ul className="mt-14 space-y-4 sm:space-y-6">
         {filteredPosts.map((post) => (
           <li key={post.id}>
             <ListItem
@@ -77,7 +77,7 @@ const BlogSearch = ({ posts }: Props): JSX.Element => {
                   <li>
                     <a
                       href={`/blog/category/${post.data.category.toLowerCase()}`}
-                      className="rounded-full bg-primary px-2 text-sm text-white hover:bg-primary/80"
+                      className="bg-primary hover:bg-primary/80 rounded-full px-2 text-sm text-white"
                     >
                       {post.data.category}
                     </a>
@@ -86,7 +86,7 @@ const BlogSearch = ({ posts }: Props): JSX.Element => {
                     <li key={tag}>
                       <a
                         href={`/blog/tag/${tag.toLowerCase()}`}
-                        className="rounded-full bg-secondary px-2 text-sm text-black transition-colors hover:text-blue-600"
+                        className="bg-secondary rounded-full px-2 text-sm text-black transition-colors hover:text-blue-600"
                       >
                         {`# ${tag}`}
                       </a>
