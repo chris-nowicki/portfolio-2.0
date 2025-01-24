@@ -1,15 +1,12 @@
 ---
-import VercelIcon from '@/assets/icons/vercel.svg'
 import Container from './Container.astro'
 import { navLinks } from '@/lib/site'
-import Link from './Link.astro'
 
 const footerLinks = [{ href: '/', text: 'home' }, ...navLinks]
 ---
 
 <Container>
-  <footer
-    class="mb-4 mt-12 flex flex-col  justify-between gap-4 sm:flex-row sm:gap-0">
+  <footer class="mb-4 mt-12 sm:flex-row sm:gap-0">
     <div class="flex w-full flex-col items-start text-sm sm:w-2/3">
       <p>
         <strong>Sitemap:</strong>
@@ -30,21 +27,6 @@ const footerLinks = [{ href: '/', text: 'home' }, ...navLinks]
           class="hover:animate-pulse">❤</span
         >
       </p>
-    </div>
-    <div class="flex items-center rounded-sm bg-black text-white w-[175px]">
-      <div class="border-r border-white px-2 py-2">
-        <Link
-          to="https://www.vercel.com"
-          icon={true}
-          ariaLabel="Visit Vercel's Website"
-          class="group">
-          <VercelIcon
-            size={16}
-            class="transition-all duration-200 ease-in-out group-hover:scale-110"
-          />
-        </Link>
-      </div>
-      <div class="px-2 text-center text-sm">Powered by Vercel</div>
     </div>
   </footer>
 </Container>
