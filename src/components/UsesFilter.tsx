@@ -1,5 +1,5 @@
 import type { CollectionEntry } from 'astro:content'
-import { useMemo, useState } from 'preact/hooks'
+import { useMemo, useState, type JSX } from 'react'
 import { ListItem } from './ListItem'
 import { UsesFilterButton } from './UsesFilterButton'
 
@@ -7,7 +7,7 @@ interface Props {
   uses: CollectionEntry<'uses'>[]
 }
 
-export default function UsesFilter({ uses }: Props) {
+export const UsesFilter = ({ uses }: Props): JSX.Element => {
   const [activeCategory, setActiveCategory] = useState('all')
 
   const categories = ['All', ...uses.map((use) => use.data.name)].sort((a, b) =>

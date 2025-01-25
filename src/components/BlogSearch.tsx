@@ -1,7 +1,6 @@
 import type { CollectionEntry } from 'astro:content'
 import Fuse from 'fuse.js'
-import type { JSX } from 'preact'
-import { useMemo, useState } from 'preact/hooks'
+import { useMemo, useState, type JSX } from 'react'
 import { ListItem } from './ListItem'
 
 type BlogPost = CollectionEntry<'blog'>
@@ -10,7 +9,7 @@ interface Props {
   posts: BlogPost[]
 }
 
-const BlogSearch = ({ posts }: Props): JSX.Element => {
+export const BlogSearch = ({ posts }: Props): JSX.Element => {
   const [searchQuery, setSearchQuery] = useState('')
 
   const fuse = useMemo(() => {
@@ -38,7 +37,7 @@ const BlogSearch = ({ posts }: Props): JSX.Element => {
           value={searchQuery}
           onInput={(e) => setSearchQuery((e.target as HTMLInputElement).value)}
           placeholder="Search by title, category, or tag ..."
-          className="w-full border-b border-gray-300 bg-white py-3 pl-2 text-base focus:border-primary focus:outline-none sm:py-2"
+          className="w-full border-b border-gray-300 bg-white py-3 pl-2 text-base focus:border-primary focus:outline-hidden sm:py-2"
         />
         {searchQuery.trim() && (
           <button
@@ -101,5 +100,3 @@ const BlogSearch = ({ posts }: Props): JSX.Element => {
     </>
   )
 }
-
-export default BlogSearch

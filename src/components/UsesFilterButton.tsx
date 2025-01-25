@@ -1,17 +1,17 @@
-import type { FunctionComponent } from 'preact'
+import type { JSX } from 'react'
 import { cn } from '@/utils/utils'
 
 interface FilterButtonProps {
   active: boolean
   onClick: () => void
-  children: preact.ComponentChildren
+  children: React.ReactNode
 }
 
-export const UsesFilterButton: FunctionComponent<FilterButtonProps> = ({
+export const UsesFilterButton = ({
   active,
   onClick,
   children,
-}) => {
+}: FilterButtonProps): JSX.Element => {
   return (
     <button
       className={cn(

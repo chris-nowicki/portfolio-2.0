@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'preact/hooks'
+import { useEffect, useState, type JSX } from 'react'
 import { ArrowIcon } from './ArrowIcon'
 
-export default function BlogBackLink() {
+export const BlogBackLink = (): JSX.Element => {
   const [backInfo, setBackInfo] = useState({
     link: '/blog',
     text: 'back to all posts',
@@ -34,10 +34,13 @@ export default function BlogBackLink() {
   }, [])
 
   return (
-    <a href={backInfo.link} class="group flex items-center gap-2 text-blue-600">
+    <a
+      href={backInfo.link}
+      className="group flex items-center gap-2 text-blue-600"
+    >
       <ArrowIcon direction="left" />
 
-      <span class="group-hover:underline group-hover:underline-offset-2">
+      <span className="group-hover:underline group-hover:underline-offset-2">
         {backInfo.text}
       </span>
     </a>
