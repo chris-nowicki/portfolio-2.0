@@ -11,9 +11,6 @@
         "./src/*"
       ]
     },
-    "types": [
-      "preact"
-    ]
   },
   "include": [
     ".astro/types.d.ts",

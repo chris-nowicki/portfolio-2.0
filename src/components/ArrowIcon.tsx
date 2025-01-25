@@ -2,12 +2,10 @@ import type { JSX } from 'react'
 
 interface ArrowIcon {
   direction?: 'left' | 'right' | 'diagonal-up'
-  key?: string
 }
 
 export const ArrowIcon = ({
   direction = 'right',
-  key = 'arrow',
 }: ArrowIcon): JSX.Element => {
   const svgProps = {
     xmlns: 'http://www.w3.org/2000/svg',
@@ -19,14 +17,13 @@ export const ArrowIcon = ({
   if (direction === 'left') {
     return (
       <svg
-        key={key}
         {...svgProps}
         viewBox="0 0 24 24"
         stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="mr-0 h-4 w-4 flex-shrink-0 text-primary/50 transition-all duration-200 ease-in-out group-hover:-translate-x-1 group-hover:text-blue-600 sm:mr-2"
+        className="mr-0 h-4 w-4 shrink-0 text-primary/50 transition-all duration-200 ease-in-out group-hover:-translate-x-1 group-hover:text-blue-600 sm:mr-2"
       >
         <path d="m12 19-7-7 7-7" />
         <path d="M19 12H5" />
@@ -39,7 +36,7 @@ export const ArrowIcon = ({
       <svg
         {...svgProps}
         viewBox="0 0 16 16"
-        className="mr-0 h-5 w-5 flex-shrink-0 text-primary/50 transition-all duration-200 ease-in-out group-hover:translate-x-2 group-hover:text-blue-600 sm:mr-2"
+        className="mr-0 h-5 w-5 shrink-0 text-primary/50 transition-all duration-200 ease-in-out group-hover:translate-x-2 group-hover:text-blue-600 sm:mr-2"
       >
         <path
           fillRule="evenodd"
@@ -56,7 +53,7 @@ export const ArrowIcon = ({
     <svg
       {...svgProps}
       viewBox="0 0 16 16"
-      className="mr-0 h-4 w-4 flex-shrink-0 text-primary/50 transition-all duration-200 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-blue-600 sm:mr-2"
+      className="mr-0 h-4 w-4 shrink-0 text-primary/50 transition-all duration-200 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-blue-600 sm:mr-2"
     >
       <path
         fill="currentColor"

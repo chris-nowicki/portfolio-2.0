@@ -2,19 +2,17 @@
 import { defineConfig } from 'astro/config'
 import { rehypeHeadingIds } from '@astrojs/markdown-remark'
 import rehypeAutoLinkHeadings from 'rehype-autolink-headings'
-import tailwind from '@astrojs/tailwind'
+import tailwindcss from '@tailwindcss/vite'
 import vercel from '@astrojs/vercel'
 import react from '@astrojs/react'
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.chrisnowicki.dev',
-  integrations: [
-    tailwind({
-      applyBaseStyles: false,
-    }),
-    react(),
-  ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
+  integrations: [react()],
   image: {
     remotePatterns: [
       {
