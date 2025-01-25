@@ -4,7 +4,7 @@ import { rehypeHeadingIds } from '@astrojs/markdown-remark'
 import rehypeAutoLinkHeadings from 'rehype-autolink-headings'
 import tailwind from '@astrojs/tailwind'
 import vercel from '@astrojs/vercel'
-import preact from '@astrojs/preact'
+import react from '@astrojs/react'
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,7 +13,7 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    preact(),
+    react(),
   ],
   image: {
     remotePatterns: [

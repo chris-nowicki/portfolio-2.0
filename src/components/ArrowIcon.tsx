@@ -1,14 +1,14 @@
-import type { FunctionComponent } from 'preact'
+import type { JSX } from 'react'
 
 interface ArrowIcon {
   direction?: 'left' | 'right' | 'diagonal-up'
   key?: string
 }
 
-export const ArrowIcon: FunctionComponent<ArrowIcon> = ({
+export const ArrowIcon = ({
   direction = 'right',
   key = 'arrow',
-}) => {
+}: ArrowIcon): JSX.Element => {
   const svgProps = {
     xmlns: 'http://www.w3.org/2000/svg',
     width: '16',

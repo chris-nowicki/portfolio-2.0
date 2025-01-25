@@ -1,4 +1,4 @@
-import type { FunctionComponent } from 'preact'
+import type { JSX } from 'react'
 import { ArrowIcon } from './ArrowIcon'
 
 interface ListItemProps {
@@ -6,16 +6,16 @@ interface ListItemProps {
   title: string
   description?: string
   external?: boolean
-  children?: preact.ComponentChildren
+  children?: React.ReactNode
 }
 
-export const ListItem: FunctionComponent<ListItemProps> = ({
+export const ListItem = ({
   href,
   title,
   description,
   external = false,
   children,
-}) => {
+}: ListItemProps): JSX.Element => {
   return (
     <a
       href={href}
