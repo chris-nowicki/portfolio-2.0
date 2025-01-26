@@ -3,7 +3,7 @@ import Me from '@/assets/images/me.webp'
 import Container from '@/components/Container.astro'
 import PageLayout from '@/layouts/PageLayout.astro'
 import { NOW } from '@/lib/site'
-import generateOgImageUrl from '@/utils/generateOgImage'
+import generateOgImageUrl from '@/utils/og-image'
 import { Image } from 'astro:assets'
 
 const ogImageUrl = generateOgImageUrl({
@@ -25,7 +25,7 @@ const ogImageUrl = generateOgImageUrl({
           class="mb-4 rounded-lg shadow-xl"
         />
         <h1 class="text-xl font-bold sm:text-4xl">Now</h1>
-        <p class="text-sm text-muted-foreground">January 10th, 2025</p>
+        <p class="text-muted-foreground text-sm">January 10th, 2025</p>
       </header>
 
       <p>
@@ -40,7 +40,7 @@ const ogImageUrl = generateOgImageUrl({
           Current Interests
         </h2>
         <ul
-          class="my-6 ml-6 list-disc marker:font-bold marker:text-primary [&>li]:mt-2">
+          class="marker:text-primary my-6 ml-6 list-disc marker:font-bold [&>li]:mt-2">
           <li>
             Exploring minimalist design principles - because I firmly believe
             that less is more when it comes to digital experiences
@@ -61,7 +61,7 @@ const ogImageUrl = generateOgImageUrl({
           unique challenges developers face. This site will:
         </p>
         <ul
-          class="my-6 ml-6 list-disc marker:font-bold marker:text-primary [&>li]:mt-2">
+          class="marker:text-primary my-6 ml-6 list-disc marker:font-bold [&>li]:mt-2">
           <li>
             Provide practical productivity strategies tailored for
             neurodivergent developers
@@ -84,7 +84,7 @@ const ogImageUrl = generateOgImageUrl({
           forward to:
         </p>
         <ul
-          class="my-6 ml-6 list-disc marker:font-bold marker:text-primary [&>li]:mt-2">
+          class="marker:text-primary my-6 ml-6 list-disc marker:font-bold [&>li]:mt-2">
           <li>
             Speaking at local meetups (come say hi if you're in the area!)
           </li>
@@ -114,11 +114,11 @@ const ogImageUrl = generateOgImageUrl({
             class="text-blue-600 hover:underline">nownownow</a
           >
         </p>
-        <p class="border-l-4 border-primary pl-2 italic">
+        <p class="border-primary border-l-4 pl-2 italic">
           Tip: Life's too short for cluttered code or complicated processes.
           Keep it simple, make it work, then make it better.
         </p>
-        <p class="mt-2 font-cursive text-4xl">- Chris Nowicki</p>
+        <p class="font-cursive mt-2 text-4xl">- Chris Nowicki</p>
       </div>
     </section>
   </Container>

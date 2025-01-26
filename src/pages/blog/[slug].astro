@@ -2,9 +2,9 @@
 import { BlogBackLink } from '@/components/BlogBackLink'
 import Container from '@/components/Container.astro'
 import PageLayout from '@/layouts/PageLayout.astro'
-import { formatDate } from '@/utils/formatDate'
-import generateOgImageUrl from '@/utils/generateOgImage'
-import { readingTime } from '@/utils/readingTime'
+import { formatDate } from '@/utils/collection-dates'
+import generateOgImageUrl from '@/utils/og-image'
+import { readingTime } from '@/utils/reading-time'
 import { Image } from 'astro:assets'
 import { getCollection, render } from 'astro:content'
 
@@ -36,7 +36,7 @@ const ogImageUrl = generateOgImageUrl({
         <BlogBackLink client:load />
 
         <h1 class="mt-8 text-xl font-bold sm:text-4xl">{post.data.title}</h1>
-        <span class="flex items-center gap-2 text-sm text-muted-foreground"
+        <span class="text-muted-foreground flex items-center gap-2 text-sm"
           >{postDate} | {postReadTime}</span
         >
         {
@@ -54,7 +54,7 @@ const ogImageUrl = generateOgImageUrl({
       <div class="prose">
         <Content />
       </div>
-      <div class="mb-28 mt-16">
+      <div class="mt-16 mb-28">
         <BlogBackLink client:load />
       </div>
     </article>

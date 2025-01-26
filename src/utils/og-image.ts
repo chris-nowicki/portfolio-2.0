@@ -1,5 +1,5 @@
 import { getCldOgImageUrl } from 'astro-cloudinary/helpers'
-import { formatCloudinaryText } from './formatCloudinaryText'
+import { formatCloudinaryText } from './cloudinary-text'
 
 type CropMode = 'fit'
 

@@ -2,10 +2,10 @@
 import DeskSetup from '@/assets/images/desk-setup.webp'
 import Container from '@/components/Container.astro'
 import Link from '@/components/Link.astro'
-import {UsesFilter} from '@/components/UsesFilter'
+import { UsesFilter } from '@/components/UsesFilter'
 import PageLayout from '@/layouts/PageLayout.astro'
 import { USES } from '@/lib/site'
-import generateOgImageUrl from '@/utils/generateOgImage'
+import generateOgImageUrl from '@/utils/og-image'
 import { Picture } from 'astro:assets'
 import { getCollection } from 'astro:content'
 
@@ -17,7 +17,10 @@ const ogImageUrl = generateOgImageUrl({
 })
 ---
 
-<PageLayout title={USES.TITLE} description={USES.DESCRIPTION} image={ogImageUrl}>
+<PageLayout
+  title={USES.TITLE}
+  description={USES.DESCRIPTION}
+  image={ogImageUrl}>
   <Container>
     <section class="relative pt-28 text-sm sm:pt-40 sm:text-base">
       <header class="mb-8">

@@ -4,7 +4,7 @@ import PageLayout from '@/layouts/PageLayout.astro'
 import Container from '@/components/Container.astro'
 import ArrowRight from '@/assets/icons/arrow-right.svg'
 import ArrowLeft from '@/assets/icons/arrow-left.svg'
-import generateOgImageUrl from '@/utils/generateOgImage'
+import generateOgImageUrl from '@/utils/og-image'
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog')
@@ -49,7 +49,7 @@ const ogImageUrl = generateOgImageUrl({
             >back to all posts</span
           ></a
         >
-        <h1 class="mb-2 mt-8 text-xl font-bold sm:text-4xl">Blog</h1>
+        <h1 class="mt-8 mb-2 text-xl font-bold sm:text-4xl">Blog</h1>
         <p class="text-foreground-muted sm:text-lg">
           All posts with the <strong>{tag}</strong> tag
         </p>
@@ -74,7 +74,7 @@ const ogImageUrl = generateOgImageUrl({
                       <li>
                         <a
                           href={`/blog/category/${post.data.category.toLowerCase()}`}
-                          class="rounded-full bg-primary px-2 text-sm text-white hover:bg-primary/80">
+                          class="bg-primary hover:bg-primary/80 rounded-full px-2 text-sm text-white">
                           {post.data.category}
                         </a>
                       </li>
@@ -82,7 +82,7 @@ const ogImageUrl = generateOgImageUrl({
                         <li>
                           <a
                             href={`/blog/tag/${tag.toLowerCase()}`}
-                            class="tag-link rounded-full bg-secondary px-2 text-sm text-black transition-colors hover:text-blue-600">
+                            class="tag-link bg-secondary rounded-full px-2 text-sm text-black transition-colors hover:text-blue-600">
                             {`# ${tag}`}
                           </a>
                         </li>
@@ -90,11 +90,11 @@ const ogImageUrl = generateOgImageUrl({
                     </ul>
                   </div>
                 </div>
-                <div class="hidden text-primary sm:block">
+                <div class="text-primary hidden sm:block">
                   <a href={`/blog/${post.id}?tag=${tag}`}>
                     <ArrowRight
                       fill="currentColor"
-                      class="mr-0 h-5 w-5 shrink-0 text-primary/50 transition-all duration-200 ease-in-out group-hover:translate-x-2 group-hover:text-blue-600 sm:mr-2"
+                      class="text-primary/50 mr-0 h-5 w-5 shrink-0 transition-all duration-200 ease-in-out group-hover:translate-x-2 group-hover:text-blue-600 sm:mr-2"
                     />
                   </a>
                 </div>

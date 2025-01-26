@@ -3,8 +3,8 @@ import Container from '@/components/Container.astro'
 import ContentSection from '@/components/ContentSection.astro'
 import PageLayout from '@/layouts/PageLayout.astro'
 import { SPEAKING } from '@/lib/site'
-import generateOgImageUrl from '@/utils/generateOgImage'
-import { getSortedYears, groupEntriesByYear } from '@/utils/utils.ts'
+import { getSortedYears, groupEntriesByYear } from '@/utils/collection-dates'
+import generateOgImageUrl from '@/utils/og-image'
 import { getCollection, type CollectionEntry } from 'astro:content'
 
 const data = (await getCollection('speaking')).sort(
