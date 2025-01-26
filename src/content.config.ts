@@ -15,7 +15,7 @@ const projects = defineCollection({
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.md', base: 'src/content/blog' }),
   schema: z.object({
-    date: z.date(),
+    date: z.date().transform((d) => new Date(d.setUTCHours(12, 0, 0, 0))),
     title: z.string(),
     description: z.string(),
     image: z.string().optional(),
