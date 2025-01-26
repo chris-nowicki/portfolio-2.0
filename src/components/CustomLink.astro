@@ -1,9 +1,13 @@
 ---
 import { cn } from '@/utils/utils'
-import { buttonVariants, type ButtonVariants } from '../lib/buttonVariants'
+import {
+  buttonVariants,
+  type ButtonVariant,
+  type ButtonSize,
+} from '../lib/buttonVariants'
 
-type Variant = NonNullable<ButtonVariants['variant']>
-type Size = NonNullable<ButtonVariants['size']>
+type Variant = NonNullable<ButtonVariant>
+type Size = NonNullable<ButtonSize>
 
 export interface Props {
   class?: string
