@@ -29,6 +29,7 @@ export const UsesFilter = ({ uses }: Props): JSX.Element => {
       <div className="mb-20 flex flex-wrap items-center justify-center gap-2">
         {categories.map((category) => (
           <UsesFilterButton
+            key={category}
             active={category.toLowerCase() === activeCategory}
             onClick={() => handleFilter(category)}
           >
