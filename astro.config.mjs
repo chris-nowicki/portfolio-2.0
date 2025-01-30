@@ -1,10 +1,11 @@
 // @ts-check
-import { defineConfig } from 'astro/config'
 import { rehypeHeadingIds } from '@astrojs/markdown-remark'
-import rehypeAutoLinkHeadings from 'rehype-autolink-headings'
-import tailwindcss from '@tailwindcss/vite'
-import vercel from '@astrojs/vercel'
 import react from '@astrojs/react'
+import sitemap from '@astrojs/sitemap'
+import vercel from '@astrojs/vercel'
+import tailwindcss from '@tailwindcss/vite'
+import { defineConfig } from 'astro/config'
+import rehypeAutoLinkHeadings from 'rehype-autolink-headings'
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,7 +13,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [react()],
+  integrations: [react(), sitemap()],
   image: {
     remotePatterns: [
       {

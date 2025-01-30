@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/markdown-remark": "^6.0.2",
     "@astrojs/react": "^4.1.6",
+    "@astrojs/sitemap": "^3.2.1",
     "@astrojs/tailwind": "^5.1.5",
     "@astrojs/vercel": "^8.0.4",
     "@fontsource/inter": "^5.1.1",
