@@ -4,61 +4,102 @@ import LinkedIn from '@/assets/icons/linkedin.svg'
 import SquiggleLine from '@/assets/icons/needle-underline.svg'
 import Twitch from '@/assets/icons/twitch.svg'
 import X from '@/assets/icons/x.svg'
+import Me from '@/assets/images/me.webp'
+import { cn } from '@/utils/utils'
+import { Image } from 'astro:assets'
 import Container from './Container.astro'
 import Link from './Link.astro'
 
+interface Props {
+  page?: boolean
+}
+
+const socialLinks = [
+  {
+    icon: X,
+    url: 'https://twitter.com/iamwix',
+    label: 'Visit my X Profile @iamwix',
+  },
+  {
+    icon: LinkedIn,
+    url: 'https://www.linkedin.com/in/chris-nowicki/',
+    label: 'Visit my LinkedIn Profile',
+  },
+  {
+    icon: GitHub,
+    url: 'https://github.com/chris-nowicki',
+    label: 'Visit my GitHub Profile',
+  },
+  {
+    icon: Twitch,
+    url: 'https://www.twitch.tv/chriswix',
+    label: 'Visit my Twitch Profile',
+  },
+] as const
+
 const socialIconClass =
   'hover:scale-110 transition-all duration-200 ease-in-out hover:text-blue-600'
+
+const { page = false } = Astro.props
 ---
 
 <Container>
   <section
-    class="mt-20 w-full rounded-lg bg-primary-foreground p-4 text-sm sm:text-base"
+    class={cn(
+      'w-full rounded-lg text-sm sm:text-base',
+      page ? 'flex space-x-6' : 'mt-20 p-4 bg-primary-foreground'
+    )}
     id="contact">
-    <header class="relative mb-8 flex justify-between">
+    <header
+      class={cn(
+        'relative mb-8 flex justify-between',
+        page ? 'hidden' : 'block'
+      )}>
       <SquiggleLine
         class="absolute -bottom-2 left-1 w-28 sm:-bottom-3 sm:w-32"
       />
       <h2 class="text-lg font-bold sm:text-xl">Let's Connect</h2>
     </header>
+    {
+      page && (
+        <Image
+          src={Me}
+          alt="Photo of me"
+          loading="eager"
+          width={200}
+          height={200}
+          class="rounded-lg shadow-xl"
+        />
+      )
+    }
+    <div>
+      <p>
+        If you want to get in touch with me about something or just to say, hi
+        👋, reach out on social media or send me an email at{' '}
+        <a
+          href="mailto:hello@chrisnowicki.dev"
+          class="font-bold hover:text-blue-600 hover:underline">
+          hello@chrisnowicki.dev
+        </a>.
+      </p>
 
-    <p>
-      If you want to get in touch with me about something or just to say, hi 👋,
-      reach out on social media or send me an email at <a
-        href="mailto:hello@chrisnowicki.dev"
-        class="font-bold hover:text-blue-600 hover:underline">hello@chrisnowicki.dev</a
-      >.
-    </p>
-
-    <div class="mt-8 flex flex-wrap gap-4">
-      <Link
-        to="https://twitter.com/iamwix"
-        class={socialIconClass}
-        icon={true}
-        ariaLabel="Visit my X Profile @iamwix">
-        <X size={24} aria-hidden="true" />
-      </Link>
-      <Link
-        to="https://www.linkedin.com/in/chris-nowicki/"
-        class={socialIconClass}
-        icon={true}
-        ariaLabel="Visit my LinkedIn Profile">
-        <LinkedIn size={24} aria-hidden="true" />
-      </Link>
-      <Link
-        to="https://github.com/chris-nowicki"
-        class={socialIconClass}
-        icon={true}
-        ariaLabel="Visit my GitHub Profile">
-        <GitHub size={24} aria-hidden="true" />
-      </Link>
-      <Link
-        to="https://www.twitch.tv/chriswix"
-        class={socialIconClass}
-        icon={true}
-        ariaLabel="Visit my Twitch Profile">
-        <Twitch size={24} aria-hidden="true" />
-      </Link>
+      <div class={cn('flex flex-wrap gap-4', page ? 'my-8' : 'mt-8')}>
+        {
+          socialLinks.map(({ icon: Icon, url, label }) => (
+            <Link
+              to={url}
+              class={socialIconClass}
+              icon={true}
+              ariaLabel={label}>
+              <Icon size={24} aria-hidden="true" />
+            </Link>
+          ))
+        }
+      </div>
+      <span
+        class={cn('font-cursive mt-4 ml-2 text-4xl', page ? 'block' : 'hidden')}
+        >- Chris</span
+      >
     </div>
   </section>
 </Container>

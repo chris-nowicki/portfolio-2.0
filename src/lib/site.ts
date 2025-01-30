@@ -7,6 +7,7 @@ export const navLinks = [
   { href: '/blog', text: 'blog' },
   { href: '/speaking', text: 'speaking' },
   { href: '/uses', text: 'uses' },
+  { href: '/contact', text: 'contact' },
 ]
 
 export const SITE: Site = {
@@ -38,4 +39,9 @@ export const SPEAKING: Metadata = {
 export const USES: Metadata = {
   TITLE: 'Uses',
   DESCRIPTION: 'Software, Hardware & Peripherals I use daily.',
+}
+
+export const CONTACT: Metadata = {
+  TITLE: 'Contact',
+  DESCRIPTION: 'Get in touch with me.',
 }
