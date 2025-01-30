@@ -9,43 +9,48 @@ const pathName = Astro.url.pathname.split('/')[1]
 
 <nav>
   <Container>
-    <div class="mt-2 flex items-center justify-between text-muted-foreground">
+    <div
+      class="text-muted-foreground relative mt-2 flex items-center justify-between">
       <a
         href="/"
-        class="rounded-full border bg-white px-2 py-1 font-cursive transition-colors duration-300 hover:bg-primary-foreground hover:text-foreground sm:text-2xl"
-        >CN</a
-      >
+        class="font-cursive hover:bg-primary-foreground hover:text-foreground rounded-full border bg-white px-2 py-1 transition-colors duration-300 sm:text-2xl">
+        CN
+      </a>
 
       <ul
-        class="hidden list-none gap-4 font-cursive text-2xl sm:text-3xl md:flex">
+        class="font-cursive absolute right-0 flex list-none gap-4 text-2xl opacity-0 transition-all duration-100 ease-in sm:text-3xl md:opacity-100"
+        aria-label="Desktop navigation">
         {
-          navLinks.map((link) => (
-            <li>
-              <a
-                href={link.href}
-                class={cn(
-                  'group relative transition-colors duration-200 ease-in-out hover:text-foreground',
-                  link.text === pathName ?
-                    'text-foreground'
-                  : 'text-muted-foreground'
-                )}>
-                {link.text}
-                <Underline
+          navLinks.map(({ href, text }) => {
+            const isActive = text === pathName
+            return (
+              <li>
+                <a
+                  href={href}
                   class={cn(
-                    'absolute bottom-0 left-0 transition-all duration-300 ease-in-out group-hover:block',
-                    link.text === pathName ? 'block' : 'hidden'
+                    'group hover:text-foreground relative transition-colors duration-200 ease-in-out',
+                    isActive ? 'text-foreground' : 'text-muted-foreground'
                   )}
-                />
-              </a>
-            </li>
-          ))
+                  aria-current={isActive ? 'page' : undefined}>
+                  {text}
+                  <Underline
+                    class={cn(
+                      'absolute bottom-0 left-0 transition-all duration-300 ease-in-out group-hover:block',
+                      isActive ? 'block' : 'hidden'
+                    )}
+                  />
+                </a>
+              </li>
+            )
+          })
         }
       </ul>
 
-      <!-- hamburger icon -->
       <button
-        class="hamburger z-50 block shadow-2xl focus:outline-hidden md:hidden"
-        id="menu-btn">
+        class="hamburger opacity-100 transition-all ease-in-out focus:outline-none md:opacity-0"
+        id="menu-btn"
+        aria-label="Toggle mobile menu"
+        aria-expanded="false">
         <span class="hamburger-top"></span>
         <span class="hamburger-middle"></span>
         <span class="hamburger-bottom"></span>
@@ -57,37 +62,38 @@ const pathName = Astro.url.pathname.split('/')[1]
 <script>
   import { isOpen } from '@/store'
 
-  function setupNav() {
-    const menuBtn = document.getElementById('menu-btn')
+  const setupNav = () => {
+    const menuBtn = document.querySelector<HTMLButtonElement>('#menu-btn')
     if (!menuBtn) return
 
-    // Create the handler function
-    const handleClick = () => {
-      isOpen.set(!isOpen.get())
+    const toggleMenu = () => {
+      const newState = !isOpen.get()
+      isOpen.set(newState)
+      menuBtn.setAttribute('aria-expanded', String(newState))
     }
 
-    // Add the listener
-    menuBtn.addEventListener('click', handleClick)
-
-    // Return cleanup function
-    return () => {
-      menuBtn.removeEventListener('click', handleClick)
-    }
+    menuBtn.addEventListener('click', toggleMenu)
+    return () => menuBtn.removeEventListener('click', toggleMenu)
   }
 
-  // Initial setup and cleanup handling
   let cleanup = setupNav()
+
   document.addEventListener('astro:after-swap', () => {
-    if (cleanup) cleanup()
+    cleanup?.()
     cleanup = setupNav()
   })
 </script>
 
 <style>
   .hamburger {
+    --hamburger-width: 24px;
+    --hamburger-height: 24px;
+    --bar-height: 2px;
+    --bar-spacing: 7px;
+
     cursor: pointer;
-    width: 24px;
-    height: 24px;
+    width: var(--hamburger-width);
+    height: var(--hamburger-height);
     transition: all 0.25s;
     position: relative;
   }
@@ -96,20 +102,20 @@ const pathName = Astro.url.pathname.split('/')[1]
   .hamburger-middle,
   .hamburger-bottom {
     position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 24px;
-    height: 2px;
+    top: 0;
+    left: 0;
+    width: var(--hamburger-width);
+    height: var(--bar-height);
     background: black;
     transform: rotate(0);
     transition: all 0.5s;
   }
 
   .hamburger-middle {
-    transform: translateY(7px);
+    transform: translateY(var(--bar-spacing));
   }
 
   .hamburger-bottom {
-    transform: translateY(14px);
+    transform: translateY(calc(var(--bar-spacing) * 2));
   }
 </style>

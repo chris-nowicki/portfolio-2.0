@@ -5,27 +5,39 @@ const mobileNavLinks = [{ href: '/', text: 'home' }, ...navLinks]
 ---
 
 <div
-  class="pointer-events-none fixed inset-0 z-50 translate-x-full bg-white opacity-0 transition-all duration-300 ease-in-out"
-  id="mobile-menu">
-  <div class="ml-12 mt-16 flex h-full flex-col">
-    <ul class="list-none gap-8 text-3xl" id="menu-links">
+  class="fixed inset-0 z-50 hidden bg-white transition-transform duration-300 ease-in-out"
+  id="mobile-menu"
+  role="dialog"
+  aria-label="Mobile navigation"
+  aria-hidden="true"
+>
+  <nav class="flex h-full flex-col items-center justify-center">
+    <ul 
+      class="flex list-none flex-col gap-4 text-7xl font-cursive" 
+      id="menu-links"
+      role="menubar"
+    >
       {
         mobileNavLinks.map((link) => (
-          <li>
+          <li role="none">
             <a
               href={link.href}
-              class="group relative transition-colors duration-200 ease-in-out hover:text-foreground">
-              /{link.text}
+              class="group block relative transition-colors duration-200 ease-in-out hover:text-foreground focus:outline-none focus:text-foreground"
+              role="menuitem"
+            >
+              {link.text}
             </a>
           </li>
         ))
       }
     </ul>
-  </div>
+  </nav>
 
   <button
-    class="close fixed right-6 top-8 shadow-2xl focus:outline-hidden md:hidden"
-    id="menu-close-btn">
+    class="fixed right-6 top-8 h-6 w-6 focus:outline-none md:hidden z-50"
+    id="menu-close-btn"
+    aria-label="Close mobile menu"
+  >
     <span class="close-top"></span>
     <span class="close-bottom"></span>
   </button>
@@ -34,105 +46,95 @@ const mobileNavLinks = [{ href: '/', text: 'home' }, ...navLinks]
 <script>
   import { isOpen } from '../store.js'
 
+  const ANIMATION_DURATION = 300
+  const MENU_VISIBLE_CLASSES = ['translate-x-0', 'opacity-100']
+  const MENU_HIDDEN_CLASSES = ['translate-x-full', 'opacity-0']
+
   function setupMobileMenu() {
     const mobileMenu = document.getElementById('mobile-menu')
     const menuCloseBtn = document.getElementById('menu-close-btn')
-    const mobileMenuLinks = document.querySelectorAll('#menu-links a')
-    const body = document.body
+    const mobileMenuLinks = document.querySelectorAll<HTMLAnchorElement>('#menu-links a')
 
     if (!mobileMenu || !menuCloseBtn) return
 
-    isOpen.subscribe((value) => {
-      if (value) {
-        requestAnimationFrame(() => {
-          mobileMenu.classList.remove(
-            'pointer-events-none',
-            'translate-x-full',
-            'opacity-0'
-          )
-          mobileMenu.classList.add(
-            'pointer-events-auto',
-            'translate-x-0',
-            'opacity-100'
-          )
-          body.style.overflow = 'hidden'
-        })
-      } else {
-        setTimeout(() => {
-          requestAnimationFrame(() => {
-            mobileMenu.classList.add(
-              'pointer-events-none',
-              'translate-x-full',
-              'opacity-0'
-            )
-            mobileMenu.classList.remove(
-              'pointer-events-auto',
-              'translate-x-0',
-              'opacity-100'
-            )
-            body.style.overflow = ''
-          })
-        }, 175)
-      }
-    })
+    const toggleMenu = (isVisible: boolean) => {
+      mobileMenu.style.display = 'block'
+      mobileMenu.setAttribute('aria-hidden', (!isVisible).toString())
+      document.body.style.overflow = isVisible ? 'hidden' : ''
 
-    const handleClick = () => {
-      isOpen.set(false)
+      requestAnimationFrame(() => {
+        if (isVisible) {
+          mobileMenu.classList.remove(...MENU_HIDDEN_CLASSES)
+          mobileMenu.classList.add(...MENU_VISIBLE_CLASSES)
+          menuCloseBtn.focus()
+        } else {
+          mobileMenu.classList.add(...MENU_HIDDEN_CLASSES)
+          mobileMenu.classList.remove(...MENU_VISIBLE_CLASSES)
+          setTimeout(() => {
+            mobileMenu.style.display = 'none'
+          }, ANIMATION_DURATION)
+        }
+      })
     }
 
-    menuCloseBtn.addEventListener('click', handleClick)
-    mobileMenuLinks.forEach((link) => {
-      link.addEventListener('click', handleClick)
-    })
+    const closeMenu = () => isOpen.set(false)
+
+    // Event Listeners
+    const unsubscribe = isOpen.subscribe(toggleMenu)
+    menuCloseBtn.addEventListener('click', closeMenu)
+    mobileMenuLinks.forEach(link => link.addEventListener('click', closeMenu))
+
+    // Keyboard navigation
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen.get()) {
+        closeMenu()
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown)
 
     return () => {
-      menuCloseBtn.removeEventListener('click', handleClick)
-      mobileMenuLinks.forEach((link) => {
-        link.removeEventListener('click', handleClick)
-      })
-      body.style.overflow = ''
+      unsubscribe()
+      menuCloseBtn.removeEventListener('click', closeMenu)
+      mobileMenuLinks.forEach(link => link.removeEventListener('click', closeMenu))
+      document.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = ''
     }
   }
 
   let cleanup = setupMobileMenu()
   document.addEventListener('astro:after-swap', () => {
-    if (cleanup) cleanup()
+    cleanup?.()
     cleanup = setupMobileMenu()
   })
 </script>
 
 <style>
-  .close {
+  #mobile-menu {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  #menu-close-btn {
     cursor: pointer;
-    width: 24px;
-    height: 24px;
   }
 
   .close-top,
   .close-bottom {
     position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 24px;
+    top: 50%;
+    left: 0;
+    width: 100%;
     height: 2px;
     background: black;
-    transform: rotate(0);
-    transition: all 0.5s;
+    transition: transform 0.5s ease;
   }
 
-  .close .close-top {
-    transform: rotate(45deg) translateY(6px) translate(6px);
+  .close-top {
+    transform: rotate(45deg);
   }
 
-  .close .close-bottom {
-    transform: rotate(-45deg) translateY(6px) translate(-6px);
-  }
-
-  #mobile-menu {
-    will-change: transform, opacity;
-    backface-visibility: hidden;
-    transition-property: transform, opacity;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
+  .close-bottom {
+    transform: rotate(-45deg);
   }
 </style>
