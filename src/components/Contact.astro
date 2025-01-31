@@ -43,7 +43,7 @@ const socialIconClass =
 const { page = false } = Astro.props
 ---
 
-<Container class="px-0">
+<Container class={cn(page && 'px-0')}>
   <section
     class={cn(
       'w-full rounded-lg text-sm sm:text-base',
@@ -74,7 +74,7 @@ const { page = false } = Astro.props
         />
       )
     }
-    <div class={cn(page && '')}>
+    <div>
       <p>
         If you want to get in touch with me about something or just to say, hi
         👋, reach out on social media or send me an email at{' '}
