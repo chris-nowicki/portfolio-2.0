@@ -43,11 +43,13 @@ const socialIconClass =
 const { page = false } = Astro.props
 ---
 
-<Container>
+<Container class="px-0">
   <section
     class={cn(
       'w-full rounded-lg text-sm sm:text-base',
-      page ? 'flex space-x-6' : 'mt-20 p-4 bg-primary-foreground'
+      page ?
+        'flex flex-col md:flex-row gap-6'
+      : 'mt-20 p-4 bg-primary-foreground'
     )}
     id="contact">
     <header
@@ -72,7 +74,7 @@ const { page = false } = Astro.props
         />
       )
     }
-    <div>
+    <div class={cn(page && '')}>
       <p>
         If you want to get in touch with me about something or just to say, hi
         👋, reach out on social media or send me an email at{' '}

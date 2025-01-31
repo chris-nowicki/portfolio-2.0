@@ -1,7 +1,14 @@
 ---
+import { cn } from '@/utils/utils'
 
+interface Props {
+  class?: string
+}
+
+const { class: className = '' } = Astro.props
 ---
 
-<div class="mx-auto w-full max-w-(--breakpoint-sm) px-6 sm:px-0">
+<div
+  class={cn('mx-auto w-full max-w-(--breakpoint-sm) px-6 sm:px-0', className)}>
   <slot />
 </div>
