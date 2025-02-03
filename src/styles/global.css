@@ -135,6 +135,10 @@
     @apply overflow-auto rounded-md p-2;
   }
 
+  pre button {
+    @apply hidden md:block;
+  }
+
   code {
     @apply my-1 border-0 text-sm leading-normal! md:text-sm;
   }
