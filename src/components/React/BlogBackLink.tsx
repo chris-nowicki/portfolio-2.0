@@ -20,14 +20,14 @@ export const BlogBackLink = (): JSX.Element => {
     if (tag) {
       setBackInfo({
         link: `/blog/tag/${tag}`,
-        text: `back to ${tag} posts`,
+        text: `back to posts about ${tag}`,
       })
 
       replaceState()
     } else if (category) {
       setBackInfo({
         link: `/blog/category/${category}`,
-        text: `back to ${category} posts`,
+        text: `back to posts about ${category}`,
       })
       replaceState()
     }
