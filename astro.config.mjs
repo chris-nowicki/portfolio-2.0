@@ -47,10 +47,6 @@ export default defineConfig({
   experimental: {
     svg: true,
   },
-
-  adapter: vercel({
-    webAnalytics: {
-      enabled: true,
-    },
-  }),
+  output: 'server',
+  adapter: vercel(),
 })
