@@ -48,5 +48,9 @@ export default defineConfig({
     svg: true,
   },
 
-  adapter: vercel(),
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true,
+    },
+  }),
 })
