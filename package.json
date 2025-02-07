@@ -13,7 +13,6 @@
     "@astrojs/markdown-remark": "^6.1.0",
     "@astrojs/react": "^4.2.0",
     "@astrojs/sitemap": "^3.2.1",
-    "@astrojs/vercel": "^8.0.5",
     "@fontsource/inter": "^5.1.1",
     "@fontsource/reenie-beanie": "^5.1.1",
     "@tailwindcss/vite": "^4.0.3",

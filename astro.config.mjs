@@ -2,7 +2,6 @@
 import { rehypeHeadingIds } from '@astrojs/markdown-remark'
 import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
-import vercel from '@astrojs/vercel'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'astro/config'
 import rehypeAutoLinkHeadings from 'rehype-autolink-headings'
@@ -47,6 +46,4 @@ export default defineConfig({
   experimental: {
     svg: true,
   },
-  output: 'static',
-  adapter: vercel(),
 })
