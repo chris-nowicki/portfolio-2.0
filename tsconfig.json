@@ -4,18 +4,21 @@
     "strictNullChecks": true,
     "allowJs": true,
     "baseUrl": ".",
-    "jsx": "react-jsx",
-    "jsxImportSource": "react",
     "paths": {
       "@/*": [
         "./src/*"
       ]
     },
+    "moduleResolution": "bundler",
+    "isolatedModules": true,
+    "types": ["svelte"]
   },
   "include": [
     ".astro/types.d.ts",
     "**/*",
-    "src/**/*.tsx"
+    "src/**/*.svelte",
+    "src/**/*.astro",
+    "src/**/*.ts"
   ],
   "exclude": [
     "dist"
