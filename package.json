@@ -10,29 +10,29 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@astrojs/markdown-remark": "^6.2.0",
-    "@astrojs/sitemap": "^3.2.1",
-    "@astrojs/svelte": "^7.0.5",
+    "@astrojs/markdown-remark": "^6.3.1",
+    "@astrojs/sitemap": "^3.3.0",
+    "@astrojs/svelte": "^7.0.7",
     "@fontsource/inter": "^5.2.5",
     "@fontsource/reenie-beanie": "^5.2.5",
-    "@tailwindcss/vite": "^4.0.9",
+    "@tailwindcss/vite": "^4.0.15",
     "@vercel/analytics": "^1.5.0",
-    "astro": "^5.4.1",
-    "astro-cloudinary": "^1.3.0",
+    "astro": "^5.5.4",
+    "astro-cloudinary": "^1.3.2",
     "clsx": "^2.1.1",
     "fuse.js": "^7.1.0",
     "nanostores": "^0.11.4",
     "rehype-autolink-headings": "^7.1.0",
     "sharp": "^0.33.5",
-    "svelte": "^5.21.0",
+    "svelte": "^5.25.2",
     "tailwind-merge": "^3.0.2",
-    "tailwindcss": "^4.0.9",
+    "tailwindcss": "^4.0.15",
     "typescript": "^5.8.2"
   },
   "devDependencies": {
     "prettier": "^3.5.3",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.11",
-    "vitest": "^3.0.7"
+    "vitest": "^3.0.9"
   }
 }
