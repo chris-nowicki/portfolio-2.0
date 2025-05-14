@@ -17,7 +17,13 @@ RUN --mount=type=cache,target=/root/.pnpm-store \
 # Copy the rest of the application
 COPY . .
 
-# Build the application (assuming this is for production)
+# Accept build arguments
+ARG PUBLIC_CLOUDINARY_CLOUD_NAME
+
+# Set environment variable from build arg
+ENV PUBLIC_CLOUDINARY_CLOUD_NAME=$PUBLIC_CLOUDINARY_CLOUD_NAME
+
+# Build the application
 RUN pnpm build
 
 # Use non-root user for security
@@ -30,6 +36,11 @@ RUN adduser \
     --no-create-home \
     --uid "${UID}" \
     appuser
+
+# Set ownership of app files to non-root user
+RUN chown -R appuser:appuser /app
+
+# Switch to non-root user
 USER appuser
 
 # Expose the port Astro runs on
