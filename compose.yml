@@ -30,7 +30,7 @@ services:
     image: ghcr.io/dreamsofcode-io/guestbook:prod
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.guestbook.rule=Host(`chrisnowicki.dev`)"
+      - "traefik.http.routers.guestbook.rule=Host(`selfhost.chrisnowicki.dev`)"
       - "traefik.http.routers.guestbook.entrypoints=websecure"
       - "traefik.http.routers.guestbook.tls.certresolver=myresolver"
       - "com.centurylinklabs.watchtower.enable=true"
