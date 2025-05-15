@@ -8,6 +8,8 @@ services:
       - '--rolling-restart'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - default
 
   reverse-proxy:
     image: traefik:v3.1
@@ -28,27 +30,42 @@ services:
     volumes:
       - letsencrypt:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - web
+      - default
+
   portfolio:
     image: ghcr.io/chris-nowicki/portfolio-2.0:prod
-    command: ['pnpm', 'start']
+    command: ['pnpm', 'preview', '--host']
     labels:
       - 'traefik.enable=true'
       - 'traefik.http.routers.portfolio.rule=Host(`selfhost.chrisnowicki.dev`)'
       - 'traefik.http.routers.portfolio.entrypoints=websecure'
       - 'traefik.http.routers.portfolio.tls.certresolver=myresolver'
-      - 'traefik.http.services.portfolio.loadbalancer.server.port=3000'
+      - 'traefik.http.services.portfolio.loadbalancer.server.port=4321'
       - 'com.centurylinklabs.watchtower.enable=true'
     environment:
       - PUBLIC_CLOUDINARY_CLOUD_NAME="ddetibihn"
       - HOME=/tmp
-      - NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
       - NPM_CONFIG_CACHE=/tmp/.npm
+      # Removed NODE_EXTRA_CA_CERTS since the path doesn't exist
     volumes:
       - node_cache:/tmp/.npm
+      # Optional: Mount CA certificates if needed
+      # - /etc/ssl/certs:/etc/ssl/certs:ro
     deploy:
       mode: replicated
       replicas: 3
     restart: always
+    networks:
+      - web
+      - default
+
 volumes:
   letsencrypt:
   node_cache:
+
+networks:
+  web:
+    external: true
+  default:
