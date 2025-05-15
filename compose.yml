@@ -8,8 +8,6 @@ services:
       - '--rolling-restart'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      - web
 
   reverse-proxy:
     image: traefik:v3.1
@@ -30,11 +28,8 @@ services:
     volumes:
       - letsencrypt:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      - web
-
   portfolio:
-    image: ghcr.io/chris-nowicki/portfolio-2.0:a4b6f5b
+    image: ghcr.io/chris-nowicki/portfolio-2.0:prod
     command: ['pnpm', 'start']
     labels:
       - 'traefik.enable=true'
@@ -54,14 +49,6 @@ services:
       mode: replicated
       replicas: 3
     restart: always
-    networks:
-      - web
-    user: '1000:1000'
-
-networks:
-  web:
-    driver: bridge
-
 volumes:
   letsencrypt:
   node_cache:

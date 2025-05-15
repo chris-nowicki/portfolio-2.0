@@ -1,5 +1,5 @@
 # Use a specific version for better reproducibility
-FROM node:24-slim
+FROM node:20-slim
 
 # Set working directory
 WORKDIR /app
@@ -7,44 +7,18 @@ WORKDIR /app
 # Install pnpm
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
-# Copy only package files first for better caching
 COPY package.json pnpm-lock.yaml* ./
 
-# Install dependencies with cache mount for faster builds
-RUN --mount=type=cache,target=/root/.pnpm-store \
-    pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile
 
-# Copy the rest of the application
 COPY . .
 
-# Accept build arguments
-ARG PUBLIC_CLOUDINARY_CLOUD_NAME
-
-# Set environment variable from build arg
-ENV PUBLIC_CLOUDINARY_CLOUD_NAME=$PUBLIC_CLOUDINARY_CLOUD_NAME
-
-# Build the application
+ENV PUBLIC_CLOUDINARY_CLOUD_NAME=ddetibihn
+ENV HOST=0.0.0.0
+ENV PORT=4321
+ 
 RUN pnpm build
 
-# Use non-root user for security
-ARG UID=10001
-RUN adduser \
-    --disabled-password \
-    --gecos "" \
-    --home "/nonexistent" \
-    --shell "/sbin/nologin" \
-    --no-create-home \
-    --uid "${UID}" \
-    appuser
-
-# Set ownership of app files to non-root user
-RUN chown -R appuser:appuser /app
-
-# Switch to non-root user
-USER appuser
-
-# Expose the port Astro runs on
 EXPOSE 4321
 
-# Specify the command to run the application
-CMD ["pnpm", "start"]
+CMD ["pnpm", "preview", "--host"]
