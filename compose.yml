@@ -2,43 +2,44 @@ services:
   watchtower:
     image: containrrr/watchtower
     command:
-      - "--label-enable"
-      - "--interval"
-      - "30"
-      - "--rolling-restart"
+      - '--label-enable'
+      - '--interval'
+      - '30'
+      - '--rolling-restart'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   reverse-proxy:
     image: traefik:v3.1
     command:
-      - "--providers.docker"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entryPoints.websecure.address=:443"
-      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
-      - "--certificatesresolvers.myresolver.acme.email=chris@chrisnowicki.dev"
-      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
-      - "--entrypoints.web.address=:80"
-      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
-      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+      - '--providers.docker'
+      - '--providers.docker.exposedbydefault=false'
+      - '--entryPoints.websecure.address=:443'
+      - '--certificatesresolvers.myresolver.acme.tlschallenge=true'
+      - '--certificatesresolvers.myresolver.acme.email=chris@chrisnowicki.dev'
+      - '--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json'
+      - '--entrypoints.web.address=:80'
+      - '--entrypoints.web.http.redirections.entrypoint.to=websecure'
+      - '--entrypoints.web.http.redirections.entrypoint.scheme=https'
     ports:
-      - "80:80"
-      - "443:443"
+      - '80:80'
+      - '443:443'
     volumes:
       - letsencrypt:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock
   portfolio:
-    image: ghcr.io/dreamsofcode-io/guestbook:prod
+    image: ghcr.io/chris-nowicki/portfolio-2.0:a4b6f5b
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.guestbook.rule=Host(`selfhost.chrisnowicki.dev`)"
-      - "traefik.http.routers.guestbook.entrypoints=websecure"
-      - "traefik.http.routers.guestbook.tls.certresolver=myresolver"
-      - "com.centurylinklabs.watchtower.enable=true"
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.portfolio.rule=Host(`selfhost.chrisnowicki.dev`)'
+      - 'traefik.http.routers.portfolio.entrypoints=websecure'
+      - 'traefik.http.routers.portfolio.tls.certresolver=myresolver'
+      - 'com.centurylinklabs.watchtower.enable=true'
     environment:
       - PUBLIC_CLOUDINARY_CLOUD_NAME="ddetibihn"
     deploy:
       mode: replicated
       replicas: 3
     restart: always
-  volumes:
-    letsencrypt:
+
+volumes:
+  letsencrypt:
