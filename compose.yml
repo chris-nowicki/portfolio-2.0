@@ -8,11 +8,15 @@ services:
       - '--rolling-restart'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - web
+
   reverse-proxy:
     image: traefik:v3.1
     command:
       - '--providers.docker'
       - '--providers.docker.exposedbydefault=false'
+      - '--providers.docker.network=web'
       - '--entryPoints.websecure.address=:443'
       - '--certificatesresolvers.myresolver.acme.tlschallenge=true'
       - '--certificatesresolvers.myresolver.acme.email=chris@chrisnowicki.dev'
@@ -26,6 +30,9 @@ services:
     volumes:
       - letsencrypt:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - web
+
   portfolio:
     image: ghcr.io/chris-nowicki/portfolio-2.0:a4b6f5b
     labels:
@@ -33,13 +40,27 @@ services:
       - 'traefik.http.routers.portfolio.rule=Host(`selfhost.chrisnowicki.dev`)'
       - 'traefik.http.routers.portfolio.entrypoints=websecure'
       - 'traefik.http.routers.portfolio.tls.certresolver=myresolver'
+      - 'traefik.http.services.portfolio.loadbalancer.server.port=3000'
       - 'com.centurylinklabs.watchtower.enable=true'
     environment:
       - PUBLIC_CLOUDINARY_CLOUD_NAME="ddetibihn"
+      - HOME=/tmp
+      - NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
+      - NPM_CONFIG_CACHE=/tmp/.npm
+    volumes:
+      - node_cache:/tmp/.npm
     deploy:
       mode: replicated
       replicas: 3
     restart: always
+    networks:
+      - web
+    user: '1000:1000'
+
+networks:
+  web:
+    driver: bridge
 
 volumes:
   letsencrypt:
+  node_cache:
