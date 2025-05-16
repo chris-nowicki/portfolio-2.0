@@ -14,11 +14,9 @@ RUN pnpm install --frozen-lockfile
 COPY . .
 
 ENV PUBLIC_CLOUDINARY_CLOUD_NAME=ddetibihn
-ENV HOST=0.0.0.0
-ENV PORT=4321
  
 RUN pnpm build
 
 EXPOSE 4321
 
-CMD ["pnpm", "preview", "--host"]
+CMD ["pnpm", "preview", "--host", "0.0.0.0", "--port", "4321"]
