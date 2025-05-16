@@ -8,6 +8,7 @@ services:
       - '--rolling-restart'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    restart: always 
     networks:
       - default
 
@@ -30,6 +31,7 @@ services:
     volumes:
       - letsencrypt:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock
+    restart: always 
     networks:
       - web
       - default
