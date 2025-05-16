@@ -11,6 +11,9 @@ export default defineConfig({
   site: 'https://www.chrisnowicki.dev',
   vite: {
     plugins: [tailwindcss()],
+    preview: {
+      allowedHosts: ['selfhost.chrisnowicki.dev'],
+    },
   },
   integrations: [sitemap(), svelte()],
   image: {
