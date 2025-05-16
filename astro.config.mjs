@@ -11,15 +11,9 @@ export default defineConfig({
   site: 'https://www.chrisnowicki.dev',
   vite: {
     plugins: [tailwindcss()],
- preview: {
-    host: true,
-    port: 4321,
-    strictPort: true,
-    headers: {
-      'Access-Control-Allow-Origin': '*'
+    server: {
+      allowedHosts: ['selfhost.chrisnowicki.dev'],
     },
-    allowedHosts: ['selfhost.chrisnowicki.dev', 'localhost']
-  }
   },
   integrations: [sitemap(), svelte()],
   image: {
