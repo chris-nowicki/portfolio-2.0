@@ -36,13 +36,12 @@ services:
 
   portfolio:
     image: ghcr.io/chris-nowicki/portfolio-2.0:prod
-    command: ['pnpm', 'preview', '--host']
     labels:
       - 'traefik.enable=true'
       - 'traefik.http.routers.portfolio.rule=Host(`selfhost.chrisnowicki.dev`)'
       - 'traefik.http.routers.portfolio.entrypoints=websecure'
       - 'traefik.http.routers.portfolio.tls.certresolver=myresolver'
-      - 'traefik.http.services.portfolio.loadbalancer.server.port=4321'
+      - 'traefik.http.services.portfolio.loadbalancer.server.port=8080'
       - 'com.centurylinklabs.watchtower.enable=true'
     environment:
       - PUBLIC_CLOUDINARY_CLOUD_NAME="ddetibihn"
@@ -51,8 +50,6 @@ services:
       # Removed NODE_EXTRA_CA_CERTS since the path doesn't exist
     volumes:
       - node_cache:/tmp/.npm
-      # Optional: Mount CA certificates if needed
-      # - /etc/ssl/certs:/etc/ssl/certs:ro
     deploy:
       mode: replicated
       replicas: 3

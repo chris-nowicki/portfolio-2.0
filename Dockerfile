@@ -1,5 +1,5 @@
 # Use a specific version for better reproducibility
-FROM node:20-slim
+FROM node:20-slim AS build
 
 # Set working directory
 WORKDIR /app
@@ -17,6 +17,7 @@ ENV PUBLIC_CLOUDINARY_CLOUD_NAME=ddetibihn
  
 RUN pnpm build
 
-EXPOSE 4321
-
-CMD ["pnpm", "preview", "--host", "0.0.0.0", "--port", "4321"]
+FROM nginx:alpine AS runtime
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 8080
