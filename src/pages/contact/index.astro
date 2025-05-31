@@ -5,7 +5,7 @@ import { CONTACT, CONFERENCE } from '@/lib/site'
 import generateOgImageUrl from '@/utils/og-image'
 import Contact from '@/components/Contact.astro'
 
-export const prerender = false;
+export const prerender = false
 const confParam = Astro.url.searchParams.get('conf')
 
 type ConferenceKey = keyof typeof CONFERENCE
@@ -21,7 +21,7 @@ const ogImageUrl = generateOgImageUrl({
 <PageLayout
   title={CONTACT.TITLE}
   description={CONTACT.DESCRIPTION}
-  image={ogImageUrl} client:load>
+  image={ogImageUrl}>
   <Container>
     <section class="pt-28 text-sm sm:pt-40 sm:text-base">
       <header class="mb-9">
