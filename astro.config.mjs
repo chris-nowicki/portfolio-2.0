@@ -6,16 +6,18 @@ import { defineConfig } from 'astro/config'
 import rehypeAutoLinkHeadings from 'rehype-autolink-headings'
 import svelte from '@astrojs/svelte'
 
+import vercel from '@astrojs/vercel'
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.chrisnowicki.dev',
+
   vite: {
     plugins: [tailwindcss()],
-    server: {
-      allowedHosts: ['selfhost.chrisnowicki.dev'],
-    },
   },
+
   integrations: [sitemap(), svelte()],
+
   image: {
     remotePatterns: [
       {
@@ -26,6 +28,7 @@ export default defineConfig({
       },
     ],
   },
+
   markdown: {
     shikiConfig: {
       theme: 'catppuccin-mocha',
@@ -45,4 +48,5 @@ export default defineConfig({
       ],
     ],
   },
+  adapter: vercel(),
 })
