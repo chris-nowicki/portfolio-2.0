@@ -33,12 +33,6 @@ const pathName = Astro.url.pathname.split('/')[1]
                   )}
                   aria-current={isActive ? 'page' : undefined}>
                   {text}
-                  <Underline
-                    class={cn(
-                      'absolute bottom-0 left-0 transition-all duration-300 ease-in-out group-hover:block',
-                      isActive ? 'block' : 'hidden'
-                    )}
-                  />
                 </a>
               </li>
             )
