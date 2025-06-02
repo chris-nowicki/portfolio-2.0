@@ -10,19 +10,16 @@
   onMount(() => {
     pathname = window.location.pathname.split('/')[1]
 
-    // Prevent body scrolling when menu is open
     return () => {
       document.body.style.overflow = ''
     }
   })
 
-  // Toggle mobile menu
   function toggleMenu() {
     isOpen = !isOpen
     document.body.style.overflow = isOpen ? 'hidden' : ''
   }
 
-  // Close mobile menu
   function closeMenu() {
     isOpen = false
     document.body.style.overflow = ''
@@ -41,7 +38,7 @@
   >
     <a
       href="/"
-      class="font-cursive rounded-full border bg-white px-2 py-1 transition-colors duration-300 sm:text-2xl text-blue-600 border-blue-600 hover:shadow-lg"
+      class="font-cursive rounded-full border px-2 py-1 transition-all duration-100 sm:text-2xl text-blue-600 border-blue-600 hover:shadow-lg hover:-rotate-10 ease-in-out hover:scale-105"
     >
       CN
     </a>

@@ -22,7 +22,7 @@ const { title, viewAllLink, items, class: classProps = '' } = Astro.props
 
 <section class={cn('mt-14 sm:mt-20', classProps)}>
   <header class="mb-6 flex items-center justify-between sm:mb-8">
-    <h2 class="text-lg font-bold sm:text-xl">{title}</h2>
+    <h2 class="text-lg font-bold sm:text-2xl uppercase">{title}</h2>
     {
       viewAllLink && (
         <a
