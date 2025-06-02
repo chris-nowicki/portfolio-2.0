@@ -1,36 +1,37 @@
 <script lang="ts">
-  import type { CollectionEntry } from 'astro:content';
-  import Fuse from 'fuse.js';
-  import ListItem from './ListItem.svelte';
-  
-  type BlogPost = CollectionEntry<'blog'>;
-  
-  export let posts: BlogPost[];
-  
-  let searchQuery = '';
-  
+  import type { CollectionEntry } from 'astro:content'
+  import Fuse from 'fuse.js'
+  import ListItem from './ListItem.svelte'
+
+  type BlogPost = CollectionEntry<'blog'>
+
+  export let posts: BlogPost[]
+
+  let searchQuery = ''
+
   // Create Fuse instance
   $: fuse = new Fuse(posts, {
     keys: ['data.title', 'data.description', 'data.category', 'data.tags'],
     threshold: 0.3,
     includeScore: true,
     useExtendedSearch: true,
-  });
-  
+  })
+
   // Filter posts based on search query
-  $: filteredPosts = !searchQuery.trim() 
-    ? posts 
-    : fuse.search(searchQuery.trim()).map(result => result.item);
+  $: filteredPosts =
+    !searchQuery.trim() ?
+      posts
+    : fuse.search(searchQuery.trim()).map((result) => result.item)
 
   // Handle input changes
   function handleInput(e: Event) {
-    const target = e.target as HTMLInputElement;
-    searchQuery = target.value;
+    const target = e.target as HTMLInputElement
+    searchQuery = target.value
   }
 
   // Clear search
   function clearSearch() {
-    searchQuery = '';
+    searchQuery = ''
   }
 </script>
 

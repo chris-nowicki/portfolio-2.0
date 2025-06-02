@@ -162,9 +162,5 @@
   main {
     @apply flex-1;
   }
-
-  nav {
-    @apply fixed top-0 right-0 left-0 z-40 pt-5 pb-1;
-    @apply saturate-200 backdrop-blur-xs;
-  }
 }
+

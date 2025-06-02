@@ -25,9 +25,9 @@ const speaking = (await getCollection('speaking'))
 <PageLayout title={HOME.TITLE} description={HOME.DESCRIPTION}>
   <Container>
     <section
-      class="relative mb-16 pt-28 text-sm sm:mb-40 sm:pt-48 sm:text-base">
+      class="relative mb-16 pt-28 text-sm sm:mb-40 sm:pt-54 sm:text-base">
       <header class="mb-4">
-        <h1 class="text-xl font-bold sm:text-3xl">Hello, I'm Chris Nowicki</h1>
+        <h1 class="text-xl font-bold sm:text-4xl"><span class="text-blue-600">Hello</span>, I'm Chris Nowicki</h1>
         <p>
           Software Engineering Lead at
           <Link
@@ -52,7 +52,7 @@ const speaking = (await getCollection('speaking'))
       </div>
 
       <div class="mt-8 flex flex-wrap gap-2 sm:gap-4">
-        <CustomLink href="/contact" size="lg" class="uppercase"
+        <CustomLink href="/contact" size="lg" class="uppercase bg-blue-600"
           >Contact Me</CustomLink
         >
         <CustomLink
@@ -67,7 +67,7 @@ const speaking = (await getCollection('speaking'))
       <ArrowSquiggle
         width={45}
         height={45}
-        class="absolute right-80 bottom-12 hidden rotate-90 transform md:block"
+        class="absolute right-92 bottom-12 hidden rotate-90 transform md:block"
       />
     </section>
 

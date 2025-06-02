@@ -1,23 +1,25 @@
 <script lang="ts">
-  import type { CollectionEntry } from 'astro:content';
-  import ListItem from './ListItem.svelte';
-  import UsesFilterButton from './UsesFilterButton.svelte';
+  import type { CollectionEntry } from 'astro:content'
+  import ListItem from './ListItem.svelte'
+  import UsesFilterButton from './UsesFilterButton.svelte'
 
-  export let uses: CollectionEntry<'uses'>[];
-  
-  let activeCategory = 'all';
+  export let uses: CollectionEntry<'uses'>[]
+
+  let activeCategory = 'all'
 
   // Create sorted categories array
-  $: categories = ['All', ...uses.map(use => use.data.name)]
-    .sort((a, b) => a.localeCompare(b));
+  $: categories = ['All', ...uses.map((use) => use.data.name)].sort((a, b) =>
+    a.localeCompare(b)
+  )
 
   // Filter uses based on active category
-  $: filteredUses = activeCategory === 'all' 
-    ? uses 
-    : uses.filter(use => use.data.name.toLowerCase() === activeCategory);
+  $: filteredUses =
+    activeCategory === 'all' ? uses : (
+      uses.filter((use) => use.data.name.toLowerCase() === activeCategory)
+    )
 
   function handleFilter(name: string) {
-    activeCategory = name.toLowerCase();
+    activeCategory = name.toLowerCase()
   }
 </script>
 
@@ -40,12 +42,8 @@
         <h2 class="text-lg font-bold sm:text-xl">{use.data.name}</h2>
       </header>
       <div class="flex flex-col gap-4">
-        {#each use.data.items.sort((a, b) => a.name.localeCompare(b.name)) as item (item.name)}
-          <ListItem 
-            href={item.url} 
-            title={item.name} 
-            external={true} 
-          />
+        {#each use.data.items.sort( (a, b) => a.name.localeCompare(b.name) ) as item (item.name)}
+          <ListItem href={item.url} title={item.name} external={true} />
         {/each}
       </div>
     </section>
