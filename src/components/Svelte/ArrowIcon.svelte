@@ -1,12 +1,12 @@
 <script lang="ts">
-  export let direction: 'left' | 'right' | 'diagonal-up' = 'right';
+  export let direction: 'left' | 'right' | 'diagonal-up' = 'right'
 
   const svgProps = {
     xmlns: 'http://www.w3.org/2000/svg',
     width: '16',
     height: '16',
     fill: 'none',
-  };
+  }
 </script>
 
 {#if direction === 'left'}
@@ -17,7 +17,7 @@
     stroke-width="2"
     stroke-linecap="round"
     stroke-linejoin="round"
-    class="mr-0 h-4 w-4 shrink-0 text-primary/50 transition-all duration-200 ease-in-out group-hover:-translate-x-1 group-hover:text-blue-600 sm:mr-2"
+    class="mr-0 h-4 w-4 shrink-0 transition-all duration-200 ease-in-out group-hover:-translate-x-1 text-blue-600 sm:mr-2"
   >
     <path d="m12 19-7-7 7-7" />
     <path d="M19 12H5" />
@@ -26,7 +26,7 @@
   <svg
     {...svgProps}
     viewBox="0 0 16 16"
-    class="mr-0 h-5 w-5 shrink-0 text-primary/50 transition-all duration-200 ease-in-out group-hover:translate-x-2 group-hover:text-blue-600 sm:mr-2"
+    class="mr-0 h-5 w-5 shrink-0 transition-all duration-200 ease-in-out group-hover:translate-x-2 text-blue-600 sm:mr-2"
   >
     <path
       fill-rule="evenodd"
@@ -39,7 +39,7 @@
   <svg
     {...svgProps}
     viewBox="0 0 16 16"
-    class="mr-0 h-4 w-4 shrink-0 text-primary/50 transition-all duration-200 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-blue-600 sm:mr-2"
+    class="mr-0 h-4 w-4 shrink-0 transition-all duration-200 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-1 text-blue-600 sm:mr-2"
   >
     <path
       fill="currentColor"

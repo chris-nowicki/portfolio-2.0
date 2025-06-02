@@ -81,7 +81,7 @@
             <li>
               <a
                 href={`/blog/category/${post.data.category.toLowerCase()}`}
-                class="rounded-full bg-primary px-2 text-sm text-white hover:bg-primary/80"
+                class="rounded-full bg-blue-600 px-2 text-sm text-white hover:bg-blue-700"
               >
                 {post.data.category}
               </a>
