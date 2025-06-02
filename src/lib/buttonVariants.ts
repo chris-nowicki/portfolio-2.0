@@ -10,7 +10,7 @@ const variants = {
 const sizes = {
   default: 'h-9 px-4 py-2',
   sm: 'h-8 rounded-md px-3 text-xs',
-  lg: 'h-10 rounded-md px-8 text-md',
+  lg: 'h-14 rounded-md px-8 text-md',
 } as const
 
 export type ButtonVariant = keyof typeof variants
