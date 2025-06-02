@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { cn } from '@/utils/utils';
+  import { cn } from '@/utils/utils'
 
-  export let active: boolean;
+  export let active: boolean
 </script>
 
 <button
