@@ -23,9 +23,9 @@
   }
 </script>
 
-<section class="mt-16 transition-all duration-300 ease-in-out">
+<section class="mt-10 md:mt-16 transition-all duration-300 ease-in-out">
   <h2 class="mb-4 text-center text-xl font-semibold">Categories</h2>
-  <div class="mb-20 flex flex-wrap items-center justify-center gap-2">
+  <div class="mb-10 md:mb-20 flex flex-wrap items-center justify-center gap-2">
     {#each categories as category (category)}
       <UsesFilterButton
         active={category.toLowerCase() === activeCategory}
@@ -37,7 +37,7 @@
   </div>
 
   {#each filteredUses as use (use.data.name)}
-    <section class="mt-14 sm:mt-20">
+    <section class="mt-10 md:mt-20">
       <header class="mb-6 flex items-center justify-between sm:mb-8">
         <h2 class="text-lg font-bold sm:text-xl">{use.data.name}</h2>
       </header>

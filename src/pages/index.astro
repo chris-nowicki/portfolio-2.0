@@ -25,9 +25,11 @@ const speaking = (await getCollection('speaking'))
 <PageLayout title={HOME.TITLE} description={HOME.DESCRIPTION}>
   <Container>
     <section
-      class="relative mb-16 pt-28 text-sm sm:mb-40 sm:pt-54 sm:text-base">
+      class="relative mb-26 pt-40 text-base sm:mb-40 sm:pt-54 sm:text-lg">
       <header class="mb-4">
-        <h1 class="text-xl font-bold sm:text-4xl"><span class="text-blue-600">Hello</span>, I'm Chris Nowicki</h1>
+        <h1 class="text-2xl font-bold sm:text-4xl">
+          <span class="text-blue-600">Hello</span>, I'm Chris Nowicki
+        </h1>
         <p>
           Software Engineering Lead at
           <Link
@@ -46,13 +48,26 @@ const speaking = (await getCollection('speaking'))
           >), or hunting for the perfect cheeseburger.
         </p>
 
-        <blockquote class="font-cursive text-xl sm:text-2xl">
-          Oh, and coffee. Lots of coffee.
+        <blockquote class="font-cursive relative text-2xl">
+          <span class="relative inline-flex items-center">
+            Oh, and coffee. Lots of coffee.
+            <ArrowSquiggle
+              width={45}
+              height={45}
+              class="arrow-sm-only absolute top-4 -right-12 hidden rotate-90 transform md:hidden"
+            />
+
+            <ArrowSquiggle
+              width={45}
+              height={45}
+              class="absolute top-4 -right-12 bottom-0 hidden rotate-90 transform md:block"
+            />
+          </span>
         </blockquote>
       </div>
 
       <div class="mt-8 flex flex-wrap gap-2 sm:gap-4">
-        <CustomLink href="/contact" size="lg" class="uppercase bg-blue-600"
+        <CustomLink href="/contact" size="lg" class="bg-blue-600 uppercase"
           >Contact Me</CustomLink
         >
         <CustomLink
@@ -63,12 +78,6 @@ const speaking = (await getCollection('speaking'))
           class="uppercase">Buy Me A Coffee</CustomLink
         >
       </div>
-
-      <ArrowSquiggle
-        width={45}
-        height={45}
-        class="absolute right-92 bottom-15 hidden rotate-90 transform md:block"
-      />
     </section>
 
     <div>
@@ -107,3 +116,11 @@ const speaking = (await getCollection('speaking'))
   </Container>
   <Contact />
 </PageLayout>
+
+<style>
+  @media (min-width: 436px) and (max-width: 767px) {
+    .arrow-sm-only {
+      display: block;
+    }
+  }
+</style>

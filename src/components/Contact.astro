@@ -46,10 +46,10 @@ const { page = false } = Astro.props
 <Container class={cn(page && 'px-0')}>
   <section
     class={cn(
-      'w-full rounded-lg text-sm sm:text-base',
+      'w-full rounded-lg text-base',
       page ?
         'flex flex-col md:flex-row gap-6'
-      : 'mt-20 p-4 bg-primary-foreground'
+      : 'mt-12 md:mt-20 p-4 bg-primary-foreground'
     )}
     id="contact">
     <header
@@ -85,7 +85,7 @@ const { page = false } = Astro.props
         </a>.
       </p>
 
-      <div class={cn('flex flex-wrap gap-4', page ? 'my-8' : 'mt-8')}>
+      <div class={cn('flex flex-wrap gap-4', page ? 'my-4 md:my-8' : 'mt-8')}>
         {
           socialLinks.map(({ icon: Icon, url, label }) => (
             <Link
@@ -99,8 +99,10 @@ const { page = false } = Astro.props
         }
       </div>
       <span
-        class={cn('font-cursive mt-4 ml-2 text-4xl text-blue-600', page ? 'block' : 'hidden')}
-        >- Chris</span
+        class={cn(
+          'font-cursive ml-2 text-4xl text-blue-600',
+          page ? 'block' : 'hidden'
+        )}>- Chris</span
       >
     </div>
   </section>

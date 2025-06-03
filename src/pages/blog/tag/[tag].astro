@@ -37,19 +37,19 @@ const ogImageUrl = generateOgImageUrl({
   <Container>
     <section
       class="relative mb-16 pt-28 text-sm sm:mb-28 sm:pt-40 sm:text-base">
-      <header class="mb-16">
+      <header class="mb-10 md:mb-16">
         <a
           href="/blog"
           class="group inline-flex items-center gap-2 hover:text-blue-600">
           <ArrowLeft
-            size={16}
+            width={16}
             class="transition-all duration-200 ease-in-out group-hover:-translate-x-1"
           />
           <span class="group-hover:underline group-hover:underline-offset-2"
             >back to all posts</span
           ></a
         >
-        <h1 class="mt-8 mb-2 text-xl font-bold sm:text-4xl">Blog</h1>
+        <h1 class="mt-8 mb-2 text-2xl font-bold md:text-4xl">Blog</h1>
         <p class="text-foreground-muted sm:text-lg">
           All posts with the <strong>{tag}</strong> tag
         </p>
@@ -74,7 +74,7 @@ const ogImageUrl = generateOgImageUrl({
                       <li>
                         <a
                           href={`/blog/category/${post.data.category.toLowerCase()}`}
-                          class="bg-primary hover:bg-primary/80 rounded-full px-2 text-sm text-white">
+                          class="bg-blue-600 hover:bg-primary/80 rounded-full px-2 text-sm text-white">
                           {post.data.category}
                         </a>
                       </li>
